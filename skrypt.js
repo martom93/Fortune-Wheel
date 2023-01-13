@@ -2317,3 +2317,720 @@ function winwheelResize()
     // Now re-draw the wheel to ensure the changes in size are rendered.
     winwheelToDrawDuringAnimation.draw();
 }
+
+// ====================================================================================================================
+// Called when the wheel is to resize. This is normally called from a onresize of the window, also called from onload
+// so the initial size is correct. Here we must re-size the canvas and work out the scaleFactor for the wheel.
+// ====================================================================================================================
+function winwheelResize()
+{
+    // By default set the margin to 40px, this can be overridden if needed.
+    // This is to stop the canvas going right to the right edge of the screen and being overlayed by a scrollbar though
+    // if the canvas is center aligned, half the magin will be applied to each side since the margin actually reduces the width of the canvas.
+    let margin = 40;
+
+    // If a value has been specified for this then update the margin to it.
+    if (typeof(winwheelToDrawDuringAnimation._responsiveMargin) !== 'undefined') {
+        margin = winwheelToDrawDuringAnimation._responsiveMargin;
+    }
+
+    // Get the current width and also optional min and max width properties.
+    let width = window.innerWidth - margin;
+    let minWidth = winwheelToDrawDuringAnimation._responsiveMinWidth;
+    let minHeight = winwheelToDrawDuringAnimation._responsiveMinHeight;
+
+    // Adjust the width as it cannot be larger than the original size of the wheel and we don't want
+    // the canvas and wheel inside it to be too small so check the min width.
+    if (width < minWidth) {
+        width = minWidth;
+    } else if (width > winwheelToDrawDuringAnimation._originalCanvasWidth) {
+        width = winwheelToDrawDuringAnimation._originalCanvasWidth;
+    }
+
+    // Work out the percent the new width is smaller than the original width.
+    let percent = (width / winwheelToDrawDuringAnimation._originalCanvasWidth);
+
+    // Set the canvas width to the width to a percentage of the original width.
+    winwheelToDrawDuringAnimation.canvas.width = (winwheelToDrawDuringAnimation._originalCanvasWidth * percent);
+
+    // Scale the height if we are supposed to but ensure it does not go below the minHeight.
+    if (winwheelToDrawDuringAnimation._responsiveScaleHeight) {
+        let height = (winwheelToDrawDuringAnimation._originalCanvasHeight * percent);
+
+        if (height < minHeight) {
+            height = minHeight;
+        } else if (height > winwheelToDrawDuringAnimation._originalCanvasHeight) {
+            height = winwheelToDrawDuringAnimation._originalCanvasHeight;
+        }
+
+        winwheelToDrawDuringAnimation.canvas.height = height;
+    }
+
+    // OK so now we have the percent, set the scaleFactor of the wheel to this.
+    winwheelToDrawDuringAnimation.scaleFactor = percent;
+
+    // Now re-draw the wheel to ensure the changes in size are rendered.
+    winwheelToDrawDuringAnimation.draw();
+}
+
+// ====================================================================================================================
+// Called when the wheel is to resize. This is normally called from a onresize of the window, also called from onload
+// so the initial size is correct. Here we must re-size the canvas and work out the scaleFactor for the wheel.
+// ====================================================================================================================
+function winwheelResize()
+{
+    // By default set the margin to 40px, this can be overridden if needed.
+    // This is to stop the canvas going right to the right edge of the screen and being overlayed by a scrollbar though
+    // if the canvas is center aligned, half the magin will be applied to each side since the margin actually reduces the width of the canvas.
+    let margin = 40;
+
+    // If a value has been specified for this then update the margin to it.
+    if (typeof(winwheelToDrawDuringAnimation._responsiveMargin) !== 'undefined') {
+        margin = winwheelToDrawDuringAnimation._responsiveMargin;
+    }
+
+    // Get the current width and also optional min and max width properties.
+    let width = window.innerWidth - margin;
+    let minWidth = winwheelToDrawDuringAnimation._responsiveMinWidth;
+    let minHeight = winwheelToDrawDuringAnimation._responsiveMinHeight;
+
+    // Adjust the width as it cannot be larger than the original size of the wheel and we don't want
+    // the canvas and wheel inside it to be too small so check the min width.
+    if (width < minWidth) {
+        width = minWidth;
+    } else if (width > winwheelToDrawDuringAnimation._originalCanvasWidth) {
+        width = winwheelToDrawDuringAnimation._originalCanvasWidth;
+    }
+
+    // Work out the percent the new width is smaller than the original width.
+    let percent = (width / winwheelToDrawDuringAnimation._originalCanvasWidth);
+
+    // Set the canvas width to the width to a percentage of the original width.
+    winwheelToDrawDuringAnimation.canvas.width = (winwheelToDrawDuringAnimation._originalCanvasWidth * percent);
+
+    // Scale the height if we are supposed to but ensure it does not go below the minHeight.
+    if (winwheelToDrawDuringAnimation._responsiveScaleHeight) {
+        let height = (winwheelToDrawDuringAnimation._originalCanvasHeight * percent);
+
+        if (height < minHeight) {
+            height = minHeight;
+        } else if (height > winwheelToDrawDuringAnimation._originalCanvasHeight) {
+            height = winwheelToDrawDuringAnimation._originalCanvasHeight;
+        }
+
+        winwheelToDrawDuringAnimation.canvas.height = height;
+    }
+
+    // OK so now we have the percent, set the scaleFactor of the wheel to this.
+    winwheelToDrawDuringAnimation.scaleFactor = percent;
+
+    // Now re-draw the wheel to ensure the changes in size are rendered.
+    winwheelToDrawDuringAnimation.draw();
+}
+
+// ====================================================================================================================
+// Called when the wheel is to resize. This is normally called from a onresize of the window, also called from onload
+// so the initial size is correct. Here we must re-size the canvas and work out the scaleFactor for the wheel.
+// ====================================================================================================================
+function winwheelResize()
+{
+    // By default set the margin to 40px, this can be overridden if needed.
+    // This is to stop the canvas going right to the right edge of the screen and being overlayed by a scrollbar though
+    // if the canvas is center aligned, half the magin will be applied to each side since the margin actually reduces the width of the canvas.
+    let margin = 40;
+
+    // If a value has been specified for this then update the margin to it.
+    if (typeof(winwheelToDrawDuringAnimation._responsiveMargin) !== 'undefined') {
+        margin = winwheelToDrawDuringAnimation._responsiveMargin;
+    }
+
+    // Get the current width and also optional min and max width properties.
+    let width = window.innerWidth - margin;
+    let minWidth = winwheelToDrawDuringAnimation._responsiveMinWidth;
+    let minHeight = winwheelToDrawDuringAnimation._responsiveMinHeight;
+
+    // Adjust the width as it cannot be larger than the original size of the wheel and we don't want
+    // the canvas and wheel inside it to be too small so check the min width.
+    if (width < minWidth) {
+        width = minWidth;
+    } else if (width > winwheelToDrawDuringAnimation._originalCanvasWidth) {
+        width = winwheelToDrawDuringAnimation._originalCanvasWidth;
+    }
+
+    // Work out the percent the new width is smaller than the original width.
+    let percent = (width / winwheelToDrawDuringAnimation._originalCanvasWidth);
+
+    // Set the canvas width to the width to a percentage of the original width.
+    winwheelToDrawDuringAnimation.canvas.width = (winwheelToDrawDuringAnimation._originalCanvasWidth * percent);
+
+    // Scale the height if we are supposed to but ensure it does not go below the minHeight.
+    if (winwheelToDrawDuringAnimation._responsiveScaleHeight) {
+        let height = (winwheelToDrawDuringAnimation._originalCanvasHeight * percent);
+
+        if (height < minHeight) {
+            height = minHeight;
+        } else if (height > winwheelToDrawDuringAnimation._originalCanvasHeight) {
+            height = winwheelToDrawDuringAnimation._originalCanvasHeight;
+        }
+
+        winwheelToDrawDuringAnimation.canvas.height = height;
+    }
+
+    // OK so now we have the percent, set the scaleFactor of the wheel to this.
+    winwheelToDrawDuringAnimation.scaleFactor = percent;
+
+    // Now re-draw the wheel to ensure the changes in size are rendered.
+    winwheelToDrawDuringAnimation.draw();
+}
+
+// ====================================================================================================================
+// Called when the wheel is to resize. This is normally called from a onresize of the window, also called from onload
+// so the initial size is correct. Here we must re-size the canvas and work out the scaleFactor for the wheel.
+// ====================================================================================================================
+function winwheelResize()
+{
+    // By default set the margin to 40px, this can be overridden if needed.
+    // This is to stop the canvas going right to the right edge of the screen and being overlayed by a scrollbar though
+    // if the canvas is center aligned, half the magin will be applied to each side since the margin actually reduces the width of the canvas.
+    let margin = 40;
+
+    // If a value has been specified for this then update the margin to it.
+    if (typeof(winwheelToDrawDuringAnimation._responsiveMargin) !== 'undefined') {
+        margin = winwheelToDrawDuringAnimation._responsiveMargin;
+    }
+
+    // Get the current width and also optional min and max width properties.
+    let width = window.innerWidth - margin;
+    let minWidth = winwheelToDrawDuringAnimation._responsiveMinWidth;
+    let minHeight = winwheelToDrawDuringAnimation._responsiveMinHeight;
+
+    // Adjust the width as it cannot be larger than the original size of the wheel and we don't want
+    // the canvas and wheel inside it to be too small so check the min width.
+    if (width < minWidth) {
+        width = minWidth;
+    } else if (width > winwheelToDrawDuringAnimation._originalCanvasWidth) {
+        width = winwheelToDrawDuringAnimation._originalCanvasWidth;
+    }
+
+    // Work out the percent the new width is smaller than the original width.
+    let percent = (width / winwheelToDrawDuringAnimation._originalCanvasWidth);
+
+    // Set the canvas width to the width to a percentage of the original width.
+    winwheelToDrawDuringAnimation.canvas.width = (winwheelToDrawDuringAnimation._originalCanvasWidth * percent);
+
+    // Scale the height if we are supposed to but ensure it does not go below the minHeight.
+    if (winwheelToDrawDuringAnimation._responsiveScaleHeight) {
+        let height = (winwheelToDrawDuringAnimation._originalCanvasHeight * percent);
+
+        if (height < minHeight) {
+            height = minHeight;
+        } else if (height > winwheelToDrawDuringAnimation._originalCanvasHeight) {
+            height = winwheelToDrawDuringAnimation._originalCanvasHeight;
+        }
+
+        winwheelToDrawDuringAnimation.canvas.height = height;
+    }
+
+    // OK so now we have the percent, set the scaleFactor of the wheel to this.
+    winwheelToDrawDuringAnimation.scaleFactor = percent;
+
+    // Now re-draw the wheel to ensure the changes in size are rendered.
+    winwheelToDrawDuringAnimation.draw();
+}
+
+// ====================================================================================================================
+// Called when the wheel is to resize. This is normally called from a onresize of the window, also called from onload
+// so the initial size is correct. Here we must re-size the canvas and work out the scaleFactor for the wheel.
+// ====================================================================================================================
+function winwheelResize()
+{
+    // By default set the margin to 40px, this can be overridden if needed.
+    // This is to stop the canvas going right to the right edge of the screen and being overlayed by a scrollbar though
+    // if the canvas is center aligned, half the magin will be applied to each side since the margin actually reduces the width of the canvas.
+    let margin = 40;
+
+    // If a value has been specified for this then update the margin to it.
+    if (typeof(winwheelToDrawDuringAnimation._responsiveMargin) !== 'undefined') {
+        margin = winwheelToDrawDuringAnimation._responsiveMargin;
+    }
+
+    // Get the current width and also optional min and max width properties.
+    let width = window.innerWidth - margin;
+    let minWidth = winwheelToDrawDuringAnimation._responsiveMinWidth;
+    let minHeight = winwheelToDrawDuringAnimation._responsiveMinHeight;
+
+    // Adjust the width as it cannot be larger than the original size of the wheel and we don't want
+    // the canvas and wheel inside it to be too small so check the min width.
+    if (width < minWidth) {
+        width = minWidth;
+    } else if (width > winwheelToDrawDuringAnimation._originalCanvasWidth) {
+        width = winwheelToDrawDuringAnimation._originalCanvasWidth;
+    }
+
+    // Work out the percent the new width is smaller than the original width.
+    let percent = (width / winwheelToDrawDuringAnimation._originalCanvasWidth);
+
+    // Set the canvas width to the width to a percentage of the original width.
+    winwheelToDrawDuringAnimation.canvas.width = (winwheelToDrawDuringAnimation._originalCanvasWidth * percent);
+
+    // Scale the height if we are supposed to but ensure it does not go below the minHeight.
+    if (winwheelToDrawDuringAnimation._responsiveScaleHeight) {
+        let height = (winwheelToDrawDuringAnimation._originalCanvasHeight * percent);
+
+        if (height < minHeight) {
+            height = minHeight;
+        } else if (height > winwheelToDrawDuringAnimation._originalCanvasHeight) {
+            height = winwheelToDrawDuringAnimation._originalCanvasHeight;
+        }
+
+        winwheelToDrawDuringAnimation.canvas.height = height;
+    }
+
+    // OK so now we have the percent, set the scaleFactor of the wheel to this.
+    winwheelToDrawDuringAnimation.scaleFactor = percent;
+
+    // Now re-draw the wheel to ensure the changes in size are rendered.
+    winwheelToDrawDuringAnimation.draw();
+}
+
+// ====================================================================================================================
+// Called when the wheel is to resize. This is normally called from a onresize of the window, also called from onload
+// so the initial size is correct. Here we must re-size the canvas and work out the scaleFactor for the wheel.
+// ====================================================================================================================
+function winwheelResize()
+{
+    // By default set the margin to 40px, this can be overridden if needed.
+    // This is to stop the canvas going right to the right edge of the screen and being overlayed by a scrollbar though
+    // if the canvas is center aligned, half the magin will be applied to each side since the margin actually reduces the width of the canvas.
+    let margin = 40;
+
+    // If a value has been specified for this then update the margin to it.
+    if (typeof(winwheelToDrawDuringAnimation._responsiveMargin) !== 'undefined') {
+        margin = winwheelToDrawDuringAnimation._responsiveMargin;
+    }
+
+    // Get the current width and also optional min and max width properties.
+    let width = window.innerWidth - margin;
+    let minWidth = winwheelToDrawDuringAnimation._responsiveMinWidth;
+    let minHeight = winwheelToDrawDuringAnimation._responsiveMinHeight;
+
+    // Adjust the width as it cannot be larger than the original size of the wheel and we don't want
+    // the canvas and wheel inside it to be too small so check the min width.
+    if (width < minWidth) {
+        width = minWidth;
+    } else if (width > winwheelToDrawDuringAnimation._originalCanvasWidth) {
+        width = winwheelToDrawDuringAnimation._originalCanvasWidth;
+    }
+
+    // Work out the percent the new width is smaller than the original width.
+    let percent = (width / winwheelToDrawDuringAnimation._originalCanvasWidth);
+
+    // Set the canvas width to the width to a percentage of the original width.
+    winwheelToDrawDuringAnimation.canvas.width = (winwheelToDrawDuringAnimation._originalCanvasWidth * percent);
+
+    // Scale the height if we are supposed to but ensure it does not go below the minHeight.
+    if (winwheelToDrawDuringAnimation._responsiveScaleHeight) {
+        let height = (winwheelToDrawDuringAnimation._originalCanvasHeight * percent);
+
+        if (height < minHeight) {
+            height = minHeight;
+        } else if (height > winwheelToDrawDuringAnimation._originalCanvasHeight) {
+            height = winwheelToDrawDuringAnimation._originalCanvasHeight;
+        }
+
+        winwheelToDrawDuringAnimation.canvas.height = height;
+    }
+
+    // OK so now we have the percent, set the scaleFactor of the wheel to this.
+    winwheelToDrawDuringAnimation.scaleFactor = percent;
+
+    // Now re-draw the wheel to ensure the changes in size are rendered.
+    winwheelToDrawDuringAnimation.draw();
+}
+
+
+// ====================================================================================================================
+// Called when the wheel is to resize. This is normally called from a onresize of the window, also called from onload
+// so the initial size is correct. Here we must re-size the canvas and work out the scaleFactor for the wheel.
+// ====================================================================================================================
+function winwheelResize()
+{
+    // By default set the margin to 40px, this can be overridden if needed.
+    // This is to stop the canvas going right to the right edge of the screen and being overlayed by a scrollbar though
+    // if the canvas is center aligned, half the magin will be applied to each side since the margin actually reduces the width of the canvas.
+    let margin = 40;
+
+    // If a value has been specified for this then update the margin to it.
+    if (typeof(winwheelToDrawDuringAnimation._responsiveMargin) !== 'undefined') {
+        margin = winwheelToDrawDuringAnimation._responsiveMargin;
+    }
+
+    // Get the current width and also optional min and max width properties.
+    let width = window.innerWidth - margin;
+    let minWidth = winwheelToDrawDuringAnimation._responsiveMinWidth;
+    let minHeight = winwheelToDrawDuringAnimation._responsiveMinHeight;
+
+    // Adjust the width as it cannot be larger than the original size of the wheel and we don't want
+    // the canvas and wheel inside it to be too small so check the min width.
+    if (width < minWidth) {
+        width = minWidth;
+    } else if (width > winwheelToDrawDuringAnimation._originalCanvasWidth) {
+        width = winwheelToDrawDuringAnimation._originalCanvasWidth;
+    }
+
+    // Work out the percent the new width is smaller than the original width.
+    let percent = (width / winwheelToDrawDuringAnimation._originalCanvasWidth);
+
+    // Set the canvas width to the width to a percentage of the original width.
+    winwheelToDrawDuringAnimation.canvas.width = (winwheelToDrawDuringAnimation._originalCanvasWidth * percent);
+
+    // Scale the height if we are supposed to but ensure it does not go below the minHeight.
+    if (winwheelToDrawDuringAnimation._responsiveScaleHeight) {
+        let height = (winwheelToDrawDuringAnimation._originalCanvasHeight * percent);
+
+        if (height < minHeight) {
+            height = minHeight;
+        } else if (height > winwheelToDrawDuringAnimation._originalCanvasHeight) {
+            height = winwheelToDrawDuringAnimation._originalCanvasHeight;
+        }
+
+        winwheelToDrawDuringAnimation.canvas.height = height;
+    }
+
+    // OK so now we have the percent, set the scaleFactor of the wheel to this.
+    winwheelToDrawDuringAnimation.scaleFactor = percent;
+
+    // Now re-draw the wheel to ensure the changes in size are rendered.
+    winwheelToDrawDuringAnimation.draw();
+}
+
+// ====================================================================================================================
+// Called when the wheel is to resize. This is normally called from a onresize of the window, also called from onload
+// so the initial size is correct. Here we must re-size the canvas and work out the scaleFactor for the wheel.
+// ====================================================================================================================
+function winwheelResize()
+{
+    // By default set the margin to 40px, this can be overridden if needed.
+    // This is to stop the canvas going right to the right edge of the screen and being overlayed by a scrollbar though
+    // if the canvas is center aligned, half the magin will be applied to each side since the margin actually reduces the width of the canvas.
+    let margin = 40;
+
+    // If a value has been specified for this then update the margin to it.
+    if (typeof(winwheelToDrawDuringAnimation._responsiveMargin) !== 'undefined') {
+        margin = winwheelToDrawDuringAnimation._responsiveMargin;
+    }
+
+    // Get the current width and also optional min and max width properties.
+    let width = window.innerWidth - margin;
+    let minWidth = winwheelToDrawDuringAnimation._responsiveMinWidth;
+    let minHeight = winwheelToDrawDuringAnimation._responsiveMinHeight;
+
+    // Adjust the width as it cannot be larger than the original size of the wheel and we don't want
+    // the canvas and wheel inside it to be too small so check the min width.
+    if (width < minWidth) {
+        width = minWidth;
+    } else if (width > winwheelToDrawDuringAnimation._originalCanvasWidth) {
+        width = winwheelToDrawDuringAnimation._originalCanvasWidth;
+    }
+
+    // Work out the percent the new width is smaller than the original width.
+    let percent = (width / winwheelToDrawDuringAnimation._originalCanvasWidth);
+
+    // Set the canvas width to the width to a percentage of the original width.
+    winwheelToDrawDuringAnimation.canvas.width = (winwheelToDrawDuringAnimation._originalCanvasWidth * percent);
+
+    // Scale the height if we are supposed to but ensure it does not go below the minHeight.
+    if (winwheelToDrawDuringAnimation._responsiveScaleHeight) {
+        let height = (winwheelToDrawDuringAnimation._originalCanvasHeight * percent);
+
+        if (height < minHeight) {
+            height = minHeight;
+        } else if (height > winwheelToDrawDuringAnimation._originalCanvasHeight) {
+            height = winwheelToDrawDuringAnimation._originalCanvasHeight;
+        }
+
+        winwheelToDrawDuringAnimation.canvas.height = height;
+    }
+
+    // OK so now we have the percent, set the scaleFactor of the wheel to this.
+    winwheelToDrawDuringAnimation.scaleFactor = percent;
+
+    // Now re-draw the wheel to ensure the changes in size are rendered.
+    winwheelToDrawDuringAnimation.draw();
+}
+
+// ====================================================================================================================
+// Called when the wheel is to resize. This is normally called from a onresize of the window, also called from onload
+// so the initial size is correct. Here we must re-size the canvas and work out the scaleFactor for the wheel.
+// ====================================================================================================================
+function winwheelResize()
+{
+    // By default set the margin to 40px, this can be overridden if needed.
+    // This is to stop the canvas going right to the right edge of the screen and being overlayed by a scrollbar though
+    // if the canvas is center aligned, half the magin will be applied to each side since the margin actually reduces the width of the canvas.
+    let margin = 40;
+
+    // If a value has been specified for this then update the margin to it.
+    if (typeof(winwheelToDrawDuringAnimation._responsiveMargin) !== 'undefined') {
+        margin = winwheelToDrawDuringAnimation._responsiveMargin;
+    }
+
+    // Get the current width and also optional min and max width properties.
+    let width = window.innerWidth - margin;
+    let minWidth = winwheelToDrawDuringAnimation._responsiveMinWidth;
+    let minHeight = winwheelToDrawDuringAnimation._responsiveMinHeight;
+
+    // Adjust the width as it cannot be larger than the original size of the wheel and we don't want
+    // the canvas and wheel inside it to be too small so check the min width.
+    if (width < minWidth) {
+        width = minWidth;
+    } else if (width > winwheelToDrawDuringAnimation._originalCanvasWidth) {
+        width = winwheelToDrawDuringAnimation._originalCanvasWidth;
+    }
+
+    // Work out the percent the new width is smaller than the original width.
+    let percent = (width / winwheelToDrawDuringAnimation._originalCanvasWidth);
+
+    // Set the canvas width to the width to a percentage of the original width.
+    winwheelToDrawDuringAnimation.canvas.width = (winwheelToDrawDuringAnimation._originalCanvasWidth * percent);
+
+    // Scale the height if we are supposed to but ensure it does not go below the minHeight.
+    if (winwheelToDrawDuringAnimation._responsiveScaleHeight) {
+        let height = (winwheelToDrawDuringAnimation._originalCanvasHeight * percent);
+
+        if (height < minHeight) {
+            height = minHeight;
+        } else if (height > winwheelToDrawDuringAnimation._originalCanvasHeight) {
+            height = winwheelToDrawDuringAnimation._originalCanvasHeight;
+        }
+
+        winwheelToDrawDuringAnimation.canvas.height = height;
+    }
+
+    // OK so now we have the percent, set the scaleFactor of the wheel to this.
+    winwheelToDrawDuringAnimation.scaleFactor = percent;
+
+    // Now re-draw the wheel to ensure the changes in size are rendered.
+    winwheelToDrawDuringAnimation.draw();
+}
+
+// ====================================================================================================================
+// Called when the wheel is to resize. This is normally called from a onresize of the window, also called from onload
+// so the initial size is correct. Here we must re-size the canvas and work out the scaleFactor for the wheel.
+// ====================================================================================================================
+function winwheelResize()
+{
+    // By default set the margin to 40px, this can be overridden if needed.
+    // This is to stop the canvas going right to the right edge of the screen and being overlayed by a scrollbar though
+    // if the canvas is center aligned, half the magin will be applied to each side since the margin actually reduces the width of the canvas.
+    let margin = 40;
+
+    // If a value has been specified for this then update the margin to it.
+    if (typeof(winwheelToDrawDuringAnimation._responsiveMargin) !== 'undefined') {
+        margin = winwheelToDrawDuringAnimation._responsiveMargin;
+    }
+
+    // Get the current width and also optional min and max width properties.
+    let width = window.innerWidth - margin;
+    let minWidth = winwheelToDrawDuringAnimation._responsiveMinWidth;
+    let minHeight = winwheelToDrawDuringAnimation._responsiveMinHeight;
+
+    // Adjust the width as it cannot be larger than the original size of the wheel and we don't want
+    // the canvas and wheel inside it to be too small so check the min width.
+    if (width < minWidth) {
+        width = minWidth;
+    } else if (width > winwheelToDrawDuringAnimation._originalCanvasWidth) {
+        width = winwheelToDrawDuringAnimation._originalCanvasWidth;
+    }
+
+    // Work out the percent the new width is smaller than the original width.
+    let percent = (width / winwheelToDrawDuringAnimation._originalCanvasWidth);
+
+    // Set the canvas width to the width to a percentage of the original width.
+    winwheelToDrawDuringAnimation.canvas.width = (winwheelToDrawDuringAnimation._originalCanvasWidth * percent);
+
+    // Scale the height if we are supposed to but ensure it does not go below the minHeight.
+    if (winwheelToDrawDuringAnimation._responsiveScaleHeight) {
+        let height = (winwheelToDrawDuringAnimation._originalCanvasHeight * percent);
+
+        if (height < minHeight) {
+            height = minHeight;
+        } else if (height > winwheelToDrawDuringAnimation._originalCanvasHeight) {
+            height = winwheelToDrawDuringAnimation._originalCanvasHeight;
+        }
+
+        winwheelToDrawDuringAnimation.canvas.height = height;
+    }
+
+    // OK so now we have the percent, set the scaleFactor of the wheel to this.
+    winwheelToDrawDuringAnimation.scaleFactor = percent;
+
+    // Now re-draw the wheel to ensure the changes in size are rendered.
+    winwheelToDrawDuringAnimation.draw();
+}
+
+// ====================================================================================================================
+// Called when the wheel is to resize. This is normally called from a onresize of the window, also called from onload
+// so the initial size is correct. Here we must re-size the canvas and work out the scaleFactor for the wheel.
+// ====================================================================================================================
+function winwheelResize()
+{
+    // By default set the margin to 40px, this can be overridden if needed.
+    // This is to stop the canvas going right to the right edge of the screen and being overlayed by a scrollbar though
+    // if the canvas is center aligned, half the magin will be applied to each side since the margin actually reduces the width of the canvas.
+    let margin = 40;
+
+    // If a value has been specified for this then update the margin to it.
+    if (typeof(winwheelToDrawDuringAnimation._responsiveMargin) !== 'undefined') {
+        margin = winwheelToDrawDuringAnimation._responsiveMargin;
+    }
+
+    // Get the current width and also optional min and max width properties.
+    let width = window.innerWidth - margin;
+    let minWidth = winwheelToDrawDuringAnimation._responsiveMinWidth;
+    let minHeight = winwheelToDrawDuringAnimation._responsiveMinHeight;
+
+    // Adjust the width as it cannot be larger than the original size of the wheel and we don't want
+    // the canvas and wheel inside it to be too small so check the min width.
+    if (width < minWidth) {
+        width = minWidth;
+    } else if (width > winwheelToDrawDuringAnimation._originalCanvasWidth) {
+        width = winwheelToDrawDuringAnimation._originalCanvasWidth;
+    }
+
+    // Work out the percent the new width is smaller than the original width.
+    let percent = (width / winwheelToDrawDuringAnimation._originalCanvasWidth);
+
+    // Set the canvas width to the width to a percentage of the original width.
+    winwheelToDrawDuringAnimation.canvas.width = (winwheelToDrawDuringAnimation._originalCanvasWidth * percent);
+
+    // Scale the height if we are supposed to but ensure it does not go below the minHeight.
+    if (winwheelToDrawDuringAnimation._responsiveScaleHeight) {
+        let height = (winwheelToDrawDuringAnimation._originalCanvasHeight * percent);
+
+        if (height < minHeight) {
+            height = minHeight;
+        } else if (height > winwheelToDrawDuringAnimation._originalCanvasHeight) {
+            height = winwheelToDrawDuringAnimation._originalCanvasHeight;
+        }
+
+        winwheelToDrawDuringAnimation.canvas.height = height;
+    }
+
+    // OK so now we have the percent, set the scaleFactor of the wheel to this.
+    winwheelToDrawDuringAnimation.scaleFactor = percent;
+
+    // Now re-draw the wheel to ensure the changes in size are rendered.
+    winwheelToDrawDuringAnimation.draw();
+}
+
+
+// ====================================================================================================================
+// Called when the wheel is to resize. This is normally called from a onresize of the window, also called from onload
+// so the initial size is correct. Here we must re-size the canvas and work out the scaleFactor for the wheel.
+// ====================================================================================================================
+function winwheelResize()
+{
+    // By default set the margin to 40px, this can be overridden if needed.
+    // This is to stop the canvas going right to the right edge of the screen and being overlayed by a scrollbar though
+    // if the canvas is center aligned, half the magin will be applied to each side since the margin actually reduces the width of the canvas.
+    let margin = 40;
+
+    // If a value has been specified for this then update the margin to it.
+    if (typeof(winwheelToDrawDuringAnimation._responsiveMargin) !== 'undefined') {
+        margin = winwheelToDrawDuringAnimation._responsiveMargin;
+    }
+
+    // Get the current width and also optional min and max width properties.
+    let width = window.innerWidth - margin;
+    let minWidth = winwheelToDrawDuringAnimation._responsiveMinWidth;
+    let minHeight = winwheelToDrawDuringAnimation._responsiveMinHeight;
+
+    // Adjust the width as it cannot be larger than the original size of the wheel and we don't want
+    // the canvas and wheel inside it to be too small so check the min width.
+    if (width < minWidth) {
+        width = minWidth;
+    } else if (width > winwheelToDrawDuringAnimation._originalCanvasWidth) {
+        width = winwheelToDrawDuringAnimation._originalCanvasWidth;
+    }
+
+    // Work out the percent the new width is smaller than the original width.
+    let percent = (width / winwheelToDrawDuringAnimation._originalCanvasWidth);
+
+    // Set the canvas width to the width to a percentage of the original width.
+    winwheelToDrawDuringAnimation.canvas.width = (winwheelToDrawDuringAnimation._originalCanvasWidth * percent);
+
+    // Scale the height if we are supposed to but ensure it does not go below the minHeight.
+    if (winwheelToDrawDuringAnimation._responsiveScaleHeight) {
+        let height = (winwheelToDrawDuringAnimation._originalCanvasHeight * percent);
+
+        if (height < minHeight) {
+            height = minHeight;
+        } else if (height > winwheelToDrawDuringAnimation._originalCanvasHeight) {
+            height = winwheelToDrawDuringAnimation._originalCanvasHeight;
+        }
+
+        winwheelToDrawDuringAnimation.canvas.height = height;
+    }
+
+    // OK so now we have the percent, set the scaleFactor of the wheel to this.
+    winwheelToDrawDuringAnimation.scaleFactor = percent;
+
+    // Now re-draw the wheel to ensure the changes in size are rendered.
+    winwheelToDrawDuringAnimation.draw();
+}
+
+// ====================================================================================================================
+// Called when the wheel is to resize. This is normally called from a onresize of the window, also called from onload
+// so the initial size is correct. Here we must re-size the canvas and work out the scaleFactor for the wheel.
+// ====================================================================================================================
+function winwheelResize()
+{
+    // By default set the margin to 40px, this can be overridden if needed.
+    // This is to stop the canvas going right to the right edge of the screen and being overlayed by a scrollbar though
+    // if the canvas is center aligned, half the magin will be applied to each side since the margin actually reduces the width of the canvas.
+    let margin = 40;
+
+    // If a value has been specified for this then update the margin to it.
+    if (typeof(winwheelToDrawDuringAnimation._responsiveMargin) !== 'undefined') {
+        margin = winwheelToDrawDuringAnimation._responsiveMargin;
+    }
+
+    // Get the current width and also optional min and max width properties.
+    let width = window.innerWidth - margin;
+    let minWidth = winwheelToDrawDuringAnimation._responsiveMinWidth;
+    let minHeight = winwheelToDrawDuringAnimation._responsiveMinHeight;
+
+    // Adjust the width as it cannot be larger than the original size of the wheel and we don't want
+    // the canvas and wheel inside it to be too small so check the min width.
+    if (width < minWidth) {
+        width = minWidth;
+    } else if (width > winwheelToDrawDuringAnimation._originalCanvasWidth) {
+        width = winwheelToDrawDuringAnimation._originalCanvasWidth;
+    }
+
+    // Work out the percent the new width is smaller than the original width.
+    let percent = (width / winwheelToDrawDuringAnimation._originalCanvasWidth);
+
+    // Set the canvas width to the width to a percentage of the original width.
+    winwheelToDrawDuringAnimation.canvas.width = (winwheelToDrawDuringAnimation._originalCanvasWidth * percent);
+
+    // Scale the height if we are supposed to but ensure it does not go below the minHeight.
+    if (winwheelToDrawDuringAnimation._responsiveScaleHeight) {
+        let height = (winwheelToDrawDuringAnimation._originalCanvasHeight * percent);
+
+        if (height < minHeight) {
+            height = minHeight;
+        } else if (height > winwheelToDrawDuringAnimation._originalCanvasHeight) {
+            height = winwheelToDrawDuringAnimation._originalCanvasHeight;
+        }
+
+        winwheelToDrawDuringAnimation.canvas.height = height;
+    }
+
+    // OK so now we have the percent, set the scaleFactor of the wheel to this.
+    winwheelToDrawDuringAnimation.scaleFactor = percent;
+
+    // Now re-draw the wheel to ensure the changes in size are rendered.
+    winwheelToDrawDuringAnimation.draw();
+}
