@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en">
+    <head>
+
+	<link rel="icon" href="ikonka.ico">
+	 <meta charset="utf-8">
+        <title>Jungler</title>
+        <link rel="stylesheet" href="styles6.css" type="text/css" />
+        <script type="text/javascript" src="skrypt.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   
+    </head>
+     <body>
+
+        <div align="center">
+		
+		
+           
+            <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td>
+                    <div class="power_controls">
+                        <br />
+                        <br />
+                        <table class="power" cellpadding="10" cellspacing="0">
+                          <tr>
+                                <th align="center">Losowanie</th>
+                            </tr>
+                            <tr>
+                                <td width="78" align="center"><a href="index.html">Junglera</a></td>
+                            </tr>
+                            <tr>
+                                <td width="78" align="center"><a href="mid.html">Mida</a></td>
+                            </tr>
+							<tr>
+                                <td width="78" align="center"><a href="top.html">Topa</a></td>
+                            </tr>
+							<tr>
+                                <td width="78" align="center"><a href="adc.html">Adc</a></td>
+                            </tr>
+							<tr>
+                                <td width="78" align="center"><a href="support.html">Supporta</a></td>
+                            </tr>
+							<tr>
+                                <td width="78" align="center"><a href="rola.html">roli</a></td>
+                            </tr>
+							<tr>
+                                <td width="78" align="center"><a href="gra.html">gry</a></td>
+                            </tr>
+                        </table>
+                        <br />
+                        <img id="spin_button" src="spin_offAlt.png" alt="Spin" onClick="startSpin();" />
+                        <br /><br />
+                       
+                    </div>
+                </td>
+                <td class="the_wheel" align="center" valign="center">
+                    <canvas id="canvas" width="875" height="1160" >
+                        <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
+                    </canvas>
+                </td>
+            </tr>
+        </table>
+        <script>
+		
+
+		
+		//declaration of champions sounds thats will be playing after spinning the fortune wheel
+		var tristana = new Audio("dzwieki/tristana.mp3");
+		var nunu = new Audio("dzwieki/nunu.mp3");
+		var voli = new Audio("dzwieki/voli.mp3");
+		var reksai = new Audio("dzwieki/reksai.mp3");
+		var yi = new Audio("dzwieki/yi.mp3");
+		var elise = new Audio("dzwieki/elise.mp3");
+		var rengar = new Audio("dzwieki/rengarpow.mp3");
+		var eve = new Audio("dzwieki/eve.mp3");
+		var shaco = new Audio("dzwieki/shaco.mp3");
+		var kha = new Audio("dzwieki/kha.mp3");
+		var shyvana = new Audio("dzwieki/shyvana.mp3");
+		var karthus = new Audio("dzwieki/karthus.mp3");
+		var olaf = new Audio("dzwieki/olaf.mp3");
+		var heca = new Audio("dzwieki/heca.mp3");
+		var poppy = new Audio("dzwieki/poppy.mp3");
+		var trundle = new Audio("dzwieki/trundle.mp3");
+		var jax = new Audio("dzwieki/jax.mp3");
+		var udyr = new Audio("dzwieki/udyr.mp3");
+		var noc = new Audio("dzwieki/noc.mp3");
+		var ivern = new Audio("dzwieki/ivern.mp3");
+		var rammus = new Audio("dzwieki/rammus.mp3");
+		var lee = new Audio("dzwieki/lee.mp3");
+		var skarner = new Audio("dzwieki/skarner.mp3");
+		var amumu = new Audio("dzwieki/amumu.mp3");
+		var mundo = new Audio("dzwieki/mundo.mp3");
+		var morgana = new Audio("dzwieki/morgana.mp3");
+		var xin = new Audio("dzwieki/xin.mp3");
+		var j4 = new Audio("dzwieki/j4.mp3");
+		var mao = new Audio("dzwieki/mao.mp3");
+		var pantheon = new Audio("dzwieki/pantheon.mp3");
+		var cho = new Audio("dzwieki/cho.mp3");
+		var sylas = new Audio("dzwieki/sylas.mp3");
+		var gragas = new Audio("dzwieki/gragas.mp3");
+		var diana = new Audio("dzwieki/diana.mp3");
+		var seju = new Audio("dzwieki/seju.mp3");
+		var teemo = new Audio("dzwieki/teemo.mp3");
+		var malph = new Audio("dzwieki/malph.mp3");
+		var zac = new Audio("dzwieki/zac.mp3");
+		var zyra = new Audio("dzwieki/zyra.mp3");
+		var graves = new Audio("dzwieki/graves.mp3");
+		var nida = new Audio("dzwieki/nida.mp3");
+		var kindred = new Audio("dzwieki/kindred.mp3");
+		var tali = new Audio("dzwieki/tali.mp3");
+		var qiyana = new Audio("dzwieki/qiyana.mp3");
+		var camille = new Audio("dzwieki/camillepow.mp3");
+		var ww = new Audio("dzwieki/ww.mp3");
+		var vi = new Audio("dzwieki/vi.mp3");
+		var kayn = new Audio("dzwieki/kayn.mp3");
+		var ekko = new Audio("dzwieki/ekko.mp3");
+		var fiddle = new Audio("dzwieki/fiddle.mp3");
+		var wk = new Audio("dzwieki/wk.mp3");
+		var janna = new Audio("dzwieki/janna.mp3");
+		var twitch = new Audio("dzwieki/twitch.mp3");
+		var lillia = new Audio("dzwieki/lillia.mp3");
+		var pow = new Audio("dzwieki/pow.mp3");
+		
+		
+		
+            // Create new wheel object specifying the parameters at creation time.
+            let theWheel = new Winwheel({
+                'outerRadius'     : 400,        // Set outer radius so wheel fits inside the background.
+                'innerRadius'     : 160,         // Make wheel hollow so segments don't go all way to center. 160, the old one
+                'textFontSize'    : 22,         // Set default font size for the segments.
+                'textOrientation' : 'horizontal', // Make text vertial so goes down from the outside of wheel.
+                'textAlignment'   : 'center',    // Align text to outside of wheel.
+                'numSegments'     : 54,         // Specify number of segments.
+				
+                'segments'        :             // Define segments including colour and text.
+                [                               // font size and test colour overridden on backrupt segments.
+                   
+				   {'fillStyle' : '#0310EA', 'text' : 'Janna', 'textFillStyle' : '#ffffff'},
+   				   {'fillStyle' : '#00FFFF', 'text' : 'Fiddlesticks'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Dr. Mundo'},
+				   
+				   {'fillStyle' : '#FB33D8', 'text' : 'Ekko'},
+				   
+				   {'fillStyle' : '#00FFFF', 'text' : 'Evelynn'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Graves'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Kha Zix'},
+				   {'fillStyle' : '#FF3300', 'text' : 'Camille 💀'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Tristana'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Shyvana'},
+				   {'fillStyle' : '#FB33D8', 'text' : 'Karthus'},
+				   
+				   {'fillStyle' : '#FF6600', 'text' : 'Twitch'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Hecarim'},
+				   
+				   {'fillStyle' : '#FCF340', 'text' : 'Volibear'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Vi'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Nunu & Willump'},
+				   {'fillStyle' : '#FB33D8', 'text' : 'Elise'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Teemo'},
+				   {'fillStyle' : '#0310EA', 'text' : 'Morgana', 'textFillStyle' : '#ffffff'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Sylas'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Rek-Sai'},
+                   {'fillStyle' : '#00FFFF', 'text' : 'Trundle'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Nidalee'},
+                   {'fillStyle' : '#FF6600', 'text' : 'Shaco'},
+                   {'fillStyle' : '#FCF340', 'text' : 'Gragas'},
+				   {'fillStyle' : '#FB33D8', 'text' : 'Kindred'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Udyr'},
+                   
+				   {'fillStyle' : '#FCF340', 'text' : 'Maokai'},
+				   
+				   {'fillStyle' : '#00FFFF', 'text' : 'Amumu'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Rammus'},
+				   
+				   {'fillStyle' : '#FB33D8', 'text' : 'Olaf'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Malphite'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Wukong'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Poppy'},
+		  		   {'fillStyle' : '#00FFFF', 'text' : 'Sejuani'},
+				   {'fillStyle' : '#0310EA', 'text' : 'Zyra', 'textFillStyle' : '#ffffff'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Jarvan IV'},
+			       
+			       {'fillStyle' : '#FCF340', 'text' : 'Ivern'},
+				   {'fillStyle' : '#FB33D8', 'text' : 'Taliyah'},
+				   
+				   {'fillStyle' : '#00FFFF', 'text' : 'Nocturne'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Skarner'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Zac'},
+			       {'fillStyle' : '#FCF340', 'text' : 'Pantheon'},
+			       {'fillStyle' : '#00FFFF', 'text' : 'Lee Sin'},
+			       {'fillStyle' : '#FF6600', 'text' : 'Cho Gath'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Lillia'},
+				   {'fillStyle' : '#FF3300', 'text' : 'Rengar 💀'},
+		           {'fillStyle' : '#FB33D8', 'text' : 'Kayn'},
+			       {'fillStyle' : '#00FFFF', 'text' : 'Qiyana'},
+				   
+		           {'fillStyle' : '#FCF340', 'text' : 'Xin zhao'},
+			       
+		           {'fillStyle' : '#FF6600', 'text' : 'Warwick'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Jax'},
+				   
+				   {'fillStyle' : '#FCF340', 'text' : 'Master Yi'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Diana'}
+				   
+                ],
+                'animation' :           // Specify the animation to use.
+                {
+                    'type'     : 'spinToStop',
+                    'duration' : 0,    // Duration in seconds. 6+((Math.random() * 7)+1)
+                    'spins'    : 2,     // Default number of complete spins.
+                    'callbackFinished' : alertPrize,   // champ of your choice
+                    'callbackSound'    : playSound,   // Function to call when the tick sound is to be triggered.
+                    'soundTrigger'     : 'pin'        // Specify pins are to trigger the sound, the other option is 'segment'.
+                },
+                'pins' :				// Turn pins on.
+                {
+                    'number'     : 54,
+                    'fillStyle'  : 'silver',
+                    'outerRadius': 4,
+                }
+            });
+
+
+
+            // Loads the tick audio sound in to an audio object.
+            let audio = new Audio('dzwieki/tick.mp3');
+			
+
+            // This function is called when the sound is to be played.
+            function playSound()
+            {
+                // Stop and rewind the sound if it already happens to be playing.
+                audio.pause();
+                audio.currentTime = 0;
+
+                // Play the sound.
+                audio.play();
+            }
+			
+				
+            // Vars used by the code in this page to do power controls.
+            let wheelPower    = 3;
+            let wheelSpinning = false;
+
+            // -------------------------------------------------------
+            // Function to handle the onClick on the power buttons.
+            // -------------------------------------------------------
+            
+
+            // -------------------------------------------------------
+            // Click handler for spin button.
+            // -------------------------------------------------------
+            function startSpin()
+            {
+			resetWheel();
+			
+                // Ensure that spinning can't be clicked again while already running.
+                if (wheelSpinning == false) {
+                    // Based on the power level selected adjust the number of spins for the wheel, the more times is has
+                    // to rotate with the duration of the animation the quicker the wheel spins.
+                    if (wheelPower == 1) {
+                        theWheel.animation.spins = ((Math.random() * 1)+15);
+                    } else if (wheelPower == 2) {
+                        theWheel.animation.spins = ((Math.random() * 1)+15);
+                    } else if (wheelPower == 3) {
+                        theWheel.animation.spins = ((Math.random() * 1)+15);
+                    }
+					else{
+					theWheel.animation.spins = ((Math.random() * 1)+10)+((Math.random() * 1)+2)+(Math.random() * 4);
+					}
+
+                    // Disable the spin button so can't click again while wheel is spinning.
+                    document.getElementById('spin_button').src       = "spin_offAlt.png";
+                    document.getElementById('spin_button').className = "";
+
+                    // Begin the spin animation by calling startAnimation on the wheel object.
+                    theWheel.startAnimation();
+
+                    // Set to true so that power can't be changed and spin button re-enabled during
+                    // the current animation. The user will have to reset before spinning again.
+                    wheelSpinning = true;
+                }
+            }
+
+            // -------------------------------------------------------
+            // Function for reset button.
+            // -------------------------------------------------------
+            function resetWheel()
+            {
+                theWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
+                theWheel.rotationAngle = Math.floor(Math.random() * 360);     // Re-set the wheel angle to random degrees.
+                theWheel.draw();                // Call draw to render changes to the wheel.
+
+               
+
+                wheelSpinning = false;          // Reset to false to power buttons and spin can be clicked again.
+            }
+
+            // -------------------------------------------------------
+            // Called when the spin animation has finished by the callback feature of the wheel because I specified callback in the parameters.
+            // -------------------------------------------------------
+         
+		 
+		 
+		 
+		 
+			 $( function() {
+		$( "#dialog" ).dialog({
+		 autoOpen: true,
+        maxWidth:2000,
+        maxHeight: 2000,
+        width: 1000,
+        height: 1000,
+        modal: true});
+		} );
+			function alertPrize(indicatedSegment)
+            {
+			         if (indicatedSegment.text == 'Teemo'){
+					$("<div id=\"dialog\" title=\"Twój champion to Teemo\"> <p><center><img src=\"champs/teemo.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					teemo.play();
+					} else if (indicatedSegment.text == 'Malphite'){
+					$("<div id=\"dialog\" title=\"Twój champion to Malphite\"> <p><center><img src=\"champs/malph.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					malph.play();
+					} else if (indicatedSegment.text == 'Wukong'){
+					$("<div id=\"dialog\" title=\"Twój champion to Wukong\"> <p><center><img src=\"champs/wk.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					wk.play();
+					}else if (indicatedSegment.text == 'Nunu & Willump'){
+					$("<div id=\"dialog\" title=\"Twój champion to Nunu\"> <p><center><img src=\"champs/nunu.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					nunu.play();
+					}else if (indicatedSegment.text == 'Volibear'){
+					$("<div id=\"dialog\" title=\"Twój champion to Volibear\"> <p><center><img src=\"champs/voli.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					voli.play();
+					}else if (indicatedSegment.text == 'Rek-Sai'){
+					$("<div id=\"dialog\" title=\"Twój champion to Rek-Sai\"> <p><center><img src=\"champs/reksai.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					reksai.play();
+					}else if (indicatedSegment.text == 'Master Yi'){
+					$("<div id=\"dialog\" title=\"Twój champion to Master Yi\"> <p><center><img src=\"champs/yi.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					yi.play();
+					}else if (indicatedSegment.text == 'Elise'){
+					$("<div id=\"dialog\" title=\"Twój champion to Elise\"> <p><center><img src=\"champs/elise.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					elise.play();
+					}else if (indicatedSegment.text == 'Rengar 💀'){
+					$("<div id=\"dialog\" title=\"Twój champion to Rengar\"> <p><center><img src=\"champs/rengar.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					rengar.play();
+					}else if (indicatedSegment.text == 'Evelynn'){
+					$("<div id=\"dialog\" title=\"Twój champion to Evelynn\"> <p><center><img src=\"champs/eve	.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					eve.play();
+					}else if (indicatedSegment.text == 'Shaco'){
+					$("<div id=\"dialog\" title=\"Twój champion to Shaco\"> <p><center><img src=\"champs/shaco.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"60000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					shaco.play();
+					}else if (indicatedSegment.text == 'Kha Zix'){
+					$("<div id=\"dialog\" title=\"Twój champion to Kha Zix\"> <p><center><img src=\"champs/kha.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					kha.play();
+					}else if (indicatedSegment.text == 'Shyvana'){
+					$("<div id=\"dialog\" title=\"Twój champion to Shyvana\"> <p><center><img src=\"champs/shyvana.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					shyvana.play();
+					}else if (indicatedSegment.text == 'Karthus'){
+					$("<div id=\"dialog\" title=\"Twój champion to Karthus\"> <p><center><img src=\"champs/karthus.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					karthus.play();
+					}else if (indicatedSegment.text == 'Hecarim'){
+					$("<div id=\"dialog\" title=\"Twój champion to Hecarim\"> <p><center><img src=\"champs/heca.jpg\" width=\"185\" height=\"336\"></center></p> <meta http-equiv=\"refresh\" content=\"600000\" ></div>").dialog({
+					width: 300,
+					height: 405
+					});
+					heca.play();
+					}else if (indicatedSegment.text == 'Poppy'){
+					$("<div id=\"dialog\" title=\"Twój champion to Poppy\"> <p><center><img src=\"champs/poppy.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					poppy.play();
+					}else if (indicatedSegment.text == 'Trundle'){
+					$("<div id=\"dialog\" title=\"Twój champion to Trundle\"> <p><center><img src=\"champs/trundle.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					trundle.play();
+					}else if (indicatedSegment.text == 'Jax'){
+					$("<div id=\"dialog\" title=\"Twój champion to Jax\"> <p><center><img src=\"champs/jax.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					jax.play();
+					}else if (indicatedSegment.text == 'Ivern'){
+					$("<div id=\"dialog\" title=\"Twój champion to Ivern\"> <p><center><img src=\"champs/ivern.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					ivern.play();
+					}else if (indicatedSegment.text == 'Rammus'){
+					$("<div id=\"dialog\" title=\"Twój champion to Rammus\"> <p><center><img src=\"champs/rammus.jpg\" width=\"185\" height=\"336\"></center></p> <meta http-equiv=\"refresh\" content=\"600000\" ></div>").dialog({
+					width: 300,
+					height: 405
+					});
+					rammus.play();
+					}else if (indicatedSegment.text == 'Lee Sin'){
+					$("<div id=\"dialog\" title=\"Twój champion to Lee Sin\"> <p><center><img src=\"champs/lee.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					lee.play();
+					}else if (indicatedSegment.text == 'Skarner'){
+					$("<div id=\"dialog\" title=\"Twój champion to Skarner\"> <p><center><img src=\"champs/skarner.jpg\" width=\"185\" height=\"336\"></center></p> <meta http-equiv=\"refresh\" content=\"600000\" ></div>").dialog({
+					width: 300,
+					height: 405
+					});
+					skarner.play();
+					}else if (indicatedSegment.text == 'Amumu'){
+					$("<div id=\"dialog\" title=\"Twój champion to Amumu\"> <p><center><img src=\"champs/amumu.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					amumu.play();
+					}else if (indicatedSegment.text == 'Dr. Mundo'){
+					$("<div id=\"dialog\" title=\"Twój champion to Mundo\"> <p><center><img src=\"champs/mundo.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					mundo.play();
+					}else if (indicatedSegment.text == 'Morgana'){
+					$("<div id=\"dialog\" title=\"Twój champion to Morgana\"> <p><center><img src=\"champs/morgana.jpg\" width=\"185\" height=\"336\"></center></p> <meta http-equiv=\"refresh\" content=\"600000\" ></div>").dialog({
+					width: 300,
+					height: 405
+					});
+					morgana.play();
+					}else if (indicatedSegment.text == 'Xin zhao'){
+					$("<div id=\"dialog\" title=\"Twój champion to Xin zhao\"> <p><center><img src=\"champs/xin.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					xin.play();
+					}else if (indicatedSegment.text == 'Jarvan IV'){
+					$("<div id=\"dialog\" title=\"Twój champion to Jarvan IV\"> <p><center><img src=\"champs/j4.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					j4.play();
+					}else if (indicatedSegment.text == 'Maokai'){
+					$("<div id=\"dialog\" title=\"Twój champion to Maokai\"> <p><center><img src=\"champs/mao.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					mao.play();
+					}else if (indicatedSegment.text == 'Pantheon'){
+					$("<div id=\"dialog\" title=\"Twój champion to Pantheon\"> <p><center><img src=\"champs/pantheon.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					pantheon.play();
+					}else if (indicatedSegment.text == 'Cho Gath'){
+					$("<div id=\"dialog\" title=\"Twój champion to Cho Gath\"> <p><center><img src=\"champs/cho.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					cho.play();
+					}else if (indicatedSegment.text == 'Sylas'){
+					$("<div id=\"dialog\" title=\"Twój champion to Sylas\"> <p><center><img src=\"champs/sylas.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					sylas.play();
+					}else if (indicatedSegment.text == 'Gragas'){
+					$("<div id=\"dialog\" title=\"Twój champion to Gragas\"> <p><center><img src=\"champs/gragas.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					gragas.play();
+					}else if (indicatedSegment.text == 'Diana'){
+					$("<div id=\"dialog\" title=\"Twój champion to Diana\"> <p><center><img src=\"champs/diana.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					diana.play();
+					}else if (indicatedSegment.text == 'Sejuani'){
+					$("<div id=\"dialog\" title=\"Twój champion to Sejuani\"> <p><center><img src=\"champs/seju.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					seju.play();
+					}else if (indicatedSegment.text == 'Zac'){
+					$("<div id=\"dialog\" title=\"Twój champion to Zac\"> <p><center><img src=\"champs/zac.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					zac.play();
+					}else if (indicatedSegment.text == 'Zyra'){
+					$("<div id=\"dialog\" title=\"Twój champion to Zyra\"> <p><center><img src=\"champs/zyra.jpg\" width=\"185\" height=\"336\"></center></p> <meta http-equiv=\"refresh\" content=\"600000\" ></div>").dialog({
+					width: 300,
+					height: 405
+					});
+					zyra.play();
+					}else if (indicatedSegment.text == 'Graves'){
+					$("<div id=\"dialog\" title=\"Twój champion to Graves\"> <p><center><img src=\"champs/graves.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					graves.play();
+					}else if (indicatedSegment.text == 'Nidalee'){
+					$("<div id=\"dialog\" title=\"Twój champion to Nidalee\"> <p><center><img src=\"champs/nida.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					nida.play();
+					}else if (indicatedSegment.text == 'Kindred'){
+					$("<div id=\"dialog\" title=\"Twój champion to Kindred\"> <p><center><img src=\"champs/kindred.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					kindred.play();
+					}else if (indicatedSegment.text == 'Taliyah'){
+					$("<div id=\"dialog\" title=\"Twój champion to Taliyah\"> <p><center><img src=\"champs/tali.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					tali.play();
+					}else if (indicatedSegment.text == 'Qiyana'){
+					$("<div id=\"dialog\" title=\"Twój champion to Qiyana\"> <p><center><img src=\"champs/qiyana.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					qiyana.play();
+					}else if (indicatedSegment.text == 'Camille 💀'){
+					$("<div id=\"dialog\" title=\"Twój champion to Camille\"> <p><center><img src=\"champs/camille.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					camille.play();
+					}else if (indicatedSegment.text == 'Warwick'){
+					$("<div id=\"dialog\" title=\"Twój champion to Warwick\"> <p><center><img src=\"champs/ww.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					ww.play();
+					}else if (indicatedSegment.text == 'Vi'){
+					$("<div id=\"dialog\" title=\"Twój champion to Vi\"> <p><center><img src=\"champs/vi.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					vi.play();
+					}else if (indicatedSegment.text == 'Kayn'){
+					$("<div id=\"dialog\" title=\"Twój champion to Kayn\"> <p><center><img src=\"champs/kayn.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					kayn.play();
+					}else if (indicatedSegment.text == 'Ekko'){
+					$("<div id=\"dialog\" title=\"Twój champion to Ekko\"> <p><center><img src=\"champs/ekko.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					ekko.play();
+					}else if (indicatedSegment.text == 'Fiddlesticks'){
+					$("<div id=\"dialog\" title=\"Twój champion to Fiddlesticks\"> <p><center><img src=\"champs/fiddle.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					fiddle.play();
+					}else if (indicatedSegment.text == 'Olaf'){
+					$("<div id=\"dialog\" title=\"Twój champion to Olaf\"> <p><center><img src=\"champs/olaf.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					olaf.play();
+					}else if (indicatedSegment.text == 'Udyr'){
+					$("<div id=\"dialog\" title=\"Twój champion to Udyr\"> <p><center><img src=\"champs/udyr.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					udyr.play();
+					}
+					else if (indicatedSegment.text == 'Janna'){
+					$("<div id=\"dialog\" title=\"Twój champion to Janna\"> <p><center><img src=\"champs/janna.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					janna.play();
+					}
+					else if (indicatedSegment.text == 'Twitch'){
+					$("<div id=\"dialog\" title=\"Twój champion to Twitch\"> <p><center><img src=\"champs/twitch.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					twitch.play();
+					}
+					else if (indicatedSegment.text == 'Tristana'){
+					$("<div id=\"dialog\" title=\"Twój champion to Tristana\"> <p><center><img src=\"champs/tristana.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					tristana.play();
+					}
+					else if (indicatedSegment.text == 'Lillia'){
+					$("<div id=\"dialog\" title=\"Twój champion to Lillia\"> <p><center><img src=\"champs/lillia.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					lillia.play();
+					}
+					else {
+					$("<div id=\"dialog\" title=\"Twój champion to Nocturne\"> <p><center><img src=\"champs/noc.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600000\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					noc.play();
+					}
+					
+					
+			}	
+		   
+					
+        </script>
+	
+<img src="pointer2.png" alt="Paris" class="center" >
+	
+    </body>
+</html>

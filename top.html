@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+    <head>
+
+	<link rel="icon" href="ikonka.ico">
+	 <meta charset="utf-8">
+        <title>Top</title>
+        <link rel="stylesheet" href="styles6.css" type="text/css" />
+        <script type="text/javascript" src="skrypt.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   
+    </head>
+     <body>
+
+        <div align="center">
+		
+		
+           
+            <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td>
+                    <div class="power_controls">
+                        <br />
+                        <br />
+                        <table class="power" cellpadding="10" cellspacing="0">
+                           <tr>
+                                <th align="center">Losowanie</th>
+                            </tr>
+                            <tr>
+                                <td width="78" align="center"><a href="index.html">Junglera</a></td>
+                            </tr>
+                            <tr>
+                                <td width="78" align="center"><a href="mid.html">Mida</a></td>
+                            </tr>
+							<tr>
+                                <td width="78" align="center"><a href="top.html">Topa</a></td>
+                            </tr>
+							<tr>
+                                <td width="78" align="center"><a href="adc.html">Adc</a></td>
+                            </tr>
+							<tr>
+                                <td width="78" align="center"><a href="support.html">Supporta</a></td>
+                            </tr>
+							<tr>
+                                <td width="78" align="center"><a href="rola.html">roli</a></td>
+                            </tr>
+							<tr>
+                                <td width="78" align="center"><a href="gra.html">gry</a></td>
+                            </tr>
+                        </table>
+                        <br />
+                        <img id="spin_button" src="spin_offAlt.png" alt="Spin" onClick="startSpin();" />
+                        <br /><br />
+                       
+                    </div>
+                </td>
+                <td class="the_wheel" align="center" valign="center">
+                    <canvas id="canvas" width="875" height="1160" >
+                        <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
+                    </canvas>
+                </td>
+            </tr>
+        </table>
+        <script>
+		
+
+		
+		//declaration of champions sounds thats will be playing after spinning the fortune wheel
+	
+	
+		
+            // Create new wheel object specifying the parameters at creation time.
+            let theWheel = new Winwheel({
+                'outerRadius'     : 400,        // Set outer radius so wheel fits inside the background.
+                'innerRadius'     : 160,         // Make wheel hollow so segments don't go all way to center. 160, the old one
+                'textFontSize'    : 22,         // Set default font size for the segments.
+                'textOrientation' : 'horizontal', // Make text vertial so goes down from the outside of wheel.
+                'textAlignment'   : 'center',    // Align text to outside of wheel.
+                'numSegments'     : 53,         // Specify number of segments.
+				
+                'segments'        :             // Define segments including colour and text.
+                [                               // font size and test colour overridden on backrupt segments.
+                   
+				   {'fillStyle' : '#0310EA', 'text' : 'Aatrox', 'textFillStyle' : '#ffffff'},
+   				   {'fillStyle' : '#00FFFF', 'text' : 'Akali'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Camille'},
+				   
+				   {'fillStyle' : '#FB33D8', 'text' : 'Cassiopeia'},
+				   
+				   {'fillStyle' : '#00FFFF', 'text' : 'Cho Gath'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Darius'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Dr. Mundo'},
+				   {'fillStyle' : '#FF3300', 'text' : 'Fiora'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Gangplank'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Garen'},
+				   {'fillStyle' : '#FB33D8', 'text' : 'Gnar'},
+				   
+				   {'fillStyle' : '#FF6600', 'text' : 'Hecarim'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Heimerdinger'},
+				   
+				   {'fillStyle' : '#FCF340', 'text' : 'Illaoi'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Irelia'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Jax'},
+				   {'fillStyle' : '#FB33D8', 'text' : 'Jayce'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Karma'},
+				   {'fillStyle' : '#0310EA', 'text' : 'Kayle', 'textFillStyle' : '#ffffff'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Kennen'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Kled'},
+                   {'fillStyle' : '#00FFFF', 'text' : 'Lillia'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Lucian'},
+                   {'fillStyle' : '#FF6600', 'text' : 'Malphite'},
+                   {'fillStyle' : '#FCF340', 'text' : 'Maokai'},
+				   {'fillStyle' : '#FB33D8', 'text' : 'Mordekaiser'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Nasus'},
+                   
+				   {'fillStyle' : '#FCF340', 'text' : 'Nocturne'},
+				   
+				   {'fillStyle' : '#00FFFF', 'text' : 'Olaf'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Ornn'},
+				   
+				   {'fillStyle' : '#FB33D8', 'text' : 'Pantheon'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Poppy'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Quinn'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Renekton'},
+		  		   {'fillStyle' : '#00FFFF', 'text' : 'Rengar'},
+				   {'fillStyle' : '#0310EA', 'text' : 'Riven', 'textFillStyle' : '#ffffff'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Rumble'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Ryze'},
+                   {'fillStyle' : '#00FFFF', 'text' : 'Sett'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Shen'},
+                   {'fillStyle' : '#FF6600', 'text' : 'Singed'},
+                   {'fillStyle' : '#FCF340', 'text' : 'Sion'},
+				   {'fillStyle' : '#FB33D8', 'text' : 'Sylas'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Teemo'},
+                   
+				   {'fillStyle' : '#FCF340', 'text' : 'Tryndamere'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Urgot'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Vayne'},
+                   {'fillStyle' : '#00FFFF', 'text' : 'Vladimir'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Volibear'},
+                   {'fillStyle' : '#FF6600', 'text' : 'Wukong'},
+                   {'fillStyle' : '#FCF340', 'text' : 'Yasuo'},
+				   {'fillStyle' : '#FB33D8', 'text' : 'Yorick'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Zac'}
+                   
+				
+				   
+				   
+                ],
+                'animation' :           // Specify the animation to use.
+                {
+                    'type'     : 'spinToStop',
+                    'duration' : 6+((Math.random() * 7)+1),    // Duration in seconds. 6+((Math.random() * 7)+1)
+                    'spins'    : 2,     // Default number of complete spins.
+                    'callbackFinished' : alertPrize,   // champ of your choice
+                    'callbackSound'    : playSound,   // Function to call when the tick sound is to be triggered.
+                    'soundTrigger'     : 'pin'        // Specify pins are to trigger the sound, the other option is 'segment'.
+                },
+                'pins' :				// Turn pins on.
+                {
+                    'number'     : 53,
+                    'fillStyle'  : 'silver',
+                    'outerRadius': 4,
+                }
+            });
+
+
+
+            // Loads the tick audio sound in to an audio object.
+            let audio = new Audio('dzwieki/tick.mp3');
+			
+
+            // This function is called when the sound is to be played.
+            function playSound()
+            {
+                // Stop and rewind the sound if it already happens to be playing.
+                audio.pause();
+                audio.currentTime = 0;
+
+                // Play the sound.
+                audio.play();
+            }
+			
+				
+            // Vars used by the code in this page to do power controls.
+            let wheelPower    = 3;
+            let wheelSpinning = false;
+
+            // -------------------------------------------------------
+            // Function to handle the onClick on the power buttons.
+            // -------------------------------------------------------
+            
+
+            // -------------------------------------------------------
+            // Click handler for spin button.
+            // -------------------------------------------------------
+            function startSpin()
+            {
+			resetWheel();
+			
+                // Ensure that spinning can't be clicked again while already running.
+                if (wheelSpinning == false) {
+                    // Based on the power level selected adjust the number of spins for the wheel, the more times is has
+                    // to rotate with the duration of the animation the quicker the wheel spins.
+                    if (wheelPower == 1) {
+                        theWheel.animation.spins = ((Math.random() * 1)+15);
+                    } else if (wheelPower == 2) {
+                        theWheel.animation.spins = ((Math.random() * 1)+15);
+                    } else if (wheelPower == 3) {
+                        theWheel.animation.spins = ((Math.random() * 1)+15);
+                    }
+					else{
+					theWheel.animation.spins = ((Math.random() * 1)+10)+((Math.random() * 1)+2)+(Math.random() * 4);
+					}
+
+                    // Disable the spin button so can't click again while wheel is spinning.
+                    document.getElementById('spin_button').src       = "spin_offAlt.png";
+                    document.getElementById('spin_button').className = "";
+
+                    // Begin the spin animation by calling startAnimation on the wheel object.
+                    theWheel.startAnimation();
+
+                    // Set to true so that power can't be changed and spin button re-enabled during
+                    // the current animation. The user will have to reset before spinning again.
+                    wheelSpinning = true;
+                }
+            }
+
+            // -------------------------------------------------------
+            // Function for reset button.
+            // -------------------------------------------------------
+            function resetWheel()
+            {
+                theWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
+                theWheel.rotationAngle = Math.floor(Math.random() * 360);     // Re-set the wheel angle to random degrees.
+                theWheel.draw();                // Call draw to render changes to the wheel.
+
+               
+
+                wheelSpinning = false;          // Reset to false to power buttons and spin can be clicked again.
+            }
+
+            // -------------------------------------------------------
+            // Called when the spin animation has finished by the callback feature of the wheel because I specified callback in the parameters.
+            // -------------------------------------------------------
+         
+		 
+		 
+		 
+		 
+			 $( function() {
+		$( "#dialog" ).dialog({
+		 autoOpen: true,
+        maxWidth:2000,
+        maxHeight: 2000,
+        width: 1000,
+        height: 1000,
+        modal: true});
+		} );
+			function alertPrize(indicatedSegment)
+            {
+			         if (indicatedSegment.text == 'Aatrox'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Aatrox\"> <p><center><img src=\"champs/aatrox.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});}
+				
+					
+
+					else if (indicatedSegment.text == 'Akali'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Akali\"> <p><center><img src=\"champs/akali.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Camille'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Camille\"> <p><center><img src=\"champs/camille.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Cassiopeia'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Cassiopeia\"> <p><center><img src=\"champs/cassio.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Cho Gath'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Cho Gath\"> <p><center><img src=\"champs/cho.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Darius'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Darius\"> <p><center><img src=\"champs/darius.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Dr. Mundo'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Dr. Mundo\"> <p><center><img src=\"champs/mundo.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Fiora'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Fiora\"> <p><center><img src=\"champs/fiora.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Gangplank'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Gangplank\"> <p><center><img src=\"champs/gp.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Garen'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Garen\"> <p><center><img src=\"champs/garen.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Gnar'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Gnar\"> <p><center><img src=\"champs/gnar.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Hecarim'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Hecarim\"> <p><center><img src=\"champs/heca.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Heimerdinger'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Heimerdinger\"> <p><center><img src=\"champs/heim.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Illaoi'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Illaoi\"> <p><center><img src=\"champs/illa.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Irelia'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Irelia\"> <p><center><img src=\"champs/irelia.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Jax'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Jax\"> <p><center><img src=\"champs/jax.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Jayce'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Jayce\"> <p><center><img src=\"champs/jayce.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Karma'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Karma\"> <p><center><img src=\"champs/karma.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Kayle'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Kayle\"> <p><center><img src=\"champs/kayle.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Kennen'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Kennen\"> <p><center><img src=\"champs/kennen.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Kled'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Kled\"> <p><center><img src=\"champs/kled.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Lillia'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Lillia\"> <p><center><img src=\"champs/lillia.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Lucian'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Lucian\"> <p><center><img src=\"champs/luc.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Malphite'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Maplhite\"> <p><center><img src=\"champs/malph.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Maokai'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Maokai\"> <p><center><img src=\"champs/mao.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Mordekaiser'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Mordekaiser\"> <p><center><img src=\"champs/morde.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Nasus'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Nasus\"> <p><center><img src=\"champs/nasus.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Nocturne'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Nocturne\"> <p><center><img src=\"champs/noc.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Olaf'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Olaf\"> <p><center><img src=\"champs/olaf.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Pantheon'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Pantheon\"> <p><center><img src=\"champs/pantheon.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Poppy'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Poppy\"> <p><center><img src=\"champs/poppy.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Quinn'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Quinn\"> <p><center><img src=\"champs/quinn.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Renekton'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Renekton\"> <p><center><img src=\"champs/rene.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Rengar'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Rengar\"> <p><center><img src=\"champs/rengar.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Riven'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Riven\"> <p><center><img src=\"champs/riven.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Rumble'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Rubmle\"> <p><center><img src=\"champs/rumble.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Ryze'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Ryze\"> <p><center><img src=\"champs/ryze.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Sett'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Sett\"> <p><center><img src=\"champs/sett.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Shen'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Shen\"> <p><center><img src=\"champs/shen.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Singed'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Singed\"> <p><center><img src=\"champs/singed.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Sion'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Sion\"> <p><center><img src=\"champs/sion.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					else if (indicatedSegment.text == 'Sylas'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Sylas\"> <p><center><img src=\"champs/sylas.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Teemo'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Teemo\"> <p><center><img src=\"champs/teemo.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Tryndamere'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Tryndamere\"> <p><center><img src=\"champs/trynda.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Urgot'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Urgot\"> <p><center><img src=\"champs/urgot.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Vayne'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Vayne\"> <p><center><img src=\"champs/vayne.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Vladimir'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Vladimir\"> <p><center><img src=\"champs/vlad.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Volibear'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Volibear\"> <p><center><img src=\"champs/voli.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Yasuo'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Yasuo\"> <p><center><img src=\"champs/yasuo.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Wukong'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Wukong\"> <p><center><img src=\"champs/wk.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Yorick'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Yorick\"> <p><center><img src=\"champs/yorick.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else if (indicatedSegment.text == 'Ornn'){
+					$("<div id=\"dialog\" title=\"Twój toplaner to Ornn\"> <p><center><img src=\"champs/ornn.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});} 
+					
+					else {
+					$("<div id=\"dialog\" title=\"Twój toplaner to Zac\"> <p><center><img src=\"champs/zac.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});}
+					
+					
+			}	
+		   
+					
+        </script>
+	
+<img src="pointer2.png" alt="Paris" class="center" >
+	
+    </body>
+</html>

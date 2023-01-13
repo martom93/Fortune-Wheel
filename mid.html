@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="en">
+    <head>
+
+	<link rel="icon" href="ikonka.ico">
+	 <meta charset="utf-8">
+        <title>Mid</title>
+        <link rel="stylesheet" href="styles6.css" type="text/css" />
+        <script type="text/javascript" src="skrypt.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   
+    </head>
+     <body>
+
+        <div align="center">
+		
+		
+           
+            <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td>
+                    <div class="power_controls">
+                        <br />
+                        <br />
+                        <table class="power" cellpadding="10" cellspacing="0">
+                            <tr>
+                                <th align="center">Losowanie</th>
+                            </tr>
+                            <tr>
+                                <td width="78" align="center"><a href="index.html">Junglera</a></td>
+                            </tr>
+                            <tr>
+                                <td width="78" align="center"><a href="mid.html">Mida</a></td>
+                            </tr>
+							<tr>
+                                <td width="78" align="center"><a href="top.html">Topa</a></td>
+                            </tr>
+							<tr>
+                                <td width="78" align="center"><a href="adc.html">Adc</a></td>
+                            </tr>
+							<tr>
+                                <td width="78" align="center"><a href="support.html">Supporta</a></td>
+                            </tr>
+							<tr>
+                                <td width="78" align="center"><a href="rola.html">roli</a></td>
+                            </tr>
+							<tr>
+                                <td width="78" align="center"><a href="gra.html">gry</a></td>
+                            </tr>
+                        </table>
+                        <br />
+                        <img id="spin_button" src="spin_offAlt.png" alt="Spin" onClick="startSpin();" />
+                        <br /><br />
+                       
+                    </div>
+                </td>
+                <td class="the_wheel" align="center" valign="center">
+                    <canvas id="canvas" width="875" height="1160" >
+                        <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
+                    </canvas>
+                </td>
+            </tr>
+        </table>
+        <script>
+		
+
+		
+		//declaration of champions sounds thats will be playing after spinning the fortune wheel
+	
+	
+		
+            // Create new wheel object specifying the parameters at creation time.
+            let theWheel = new Winwheel({
+                'outerRadius'     : 400,        // Set outer radius so wheel fits inside the background.
+                'innerRadius'     : 160,         // Make wheel hollow so segments don't go all way to center. 160, the old one
+                'textFontSize'    : 22,         // Set default font size for the segments.
+                'textOrientation' : 'horizontal', // Make text vertial so goes down from the outside of wheel.
+                'textAlignment'   : 'center',    // Align text to outside of wheel.
+                'numSegments'     : 54,         // Specify number of segments.
+				
+                'segments'        :             // Define segments including colour and text.
+                [                               // font size and test colour overridden on backrupt segments.
+                   
+				   {'fillStyle' : '#0310EA', 'text' : 'Aatrox', 'textFillStyle' : '#ffffff'},
+   				   {'fillStyle' : '#00FFFF', 'text' : 'Ahri'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Akali'},
+				   
+				   {'fillStyle' : '#FB33D8', 'text' : 'Anivia'},
+				   
+				   {'fillStyle' : '#00FFFF', 'text' : 'Annie'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Aurelion Sol'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Azir'},
+				   {'fillStyle' : '#FF3300', 'text' : 'Camille'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Cassiopeia'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Cho Gath'},
+				   {'fillStyle' : '#FB33D8', 'text' : 'Diana'},
+				   
+				   {'fillStyle' : '#FF6600', 'text' : 'Ekko'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Fizz'},
+				   
+				   {'fillStyle' : '#FCF340', 'text' : 'Galio'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Garen'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Heimerdinger'},
+				   {'fillStyle' : '#FB33D8', 'text' : 'Irelia'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Ivern'},
+				   {'fillStyle' : '#0310EA', 'text' : 'Jayce', 'textFillStyle' : '#ffffff'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Kassadin'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Katarina'},
+                   {'fillStyle' : '#00FFFF', 'text' : 'LeBlanc'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Lillia'},
+                   {'fillStyle' : '#FF6600', 'text' : 'Lissandra'},
+                   {'fillStyle' : '#FCF340', 'text' : 'Lucian'},
+				   {'fillStyle' : '#FB33D8', 'text' : 'Lux'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Malphite'},
+                   
+				   {'fillStyle' : '#FCF340', 'text' : 'Malzahar'},
+				   
+				   {'fillStyle' : '#00FFFF', 'text' : 'Neeko'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Nocturne'},
+				   
+				   {'fillStyle' : '#FB33D8', 'text' : 'Nunu'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Orianna'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Pantheon'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Pyke'},
+		  		   {'fillStyle' : '#00FFFF', 'text' : 'Qiyana'},
+				   {'fillStyle' : '#0310EA', 'text' : 'Renekton', 'textFillStyle' : '#ffffff'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Rumble'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Ryze'},
+                   {'fillStyle' : '#FF6600', 'text' : 'Swain'},
+                   {'fillStyle' : '#FCF340', 'text' : 'Sylas'},
+				   {'fillStyle' : '#FB33D8', 'text' : 'Syndra'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Talon'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Twisted Fate'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Veigar'},
+                   {'fillStyle' : '#FF6600', 'text' : 'Vel Koz'},
+                   {'fillStyle' : '#FCF340', 'text' : 'Viktor'},
+				   {'fillStyle' : '#FB33D8', 'text' : 'Vladimir'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Xerath'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Yasuo'},
+				    {'fillStyle' : '#00FFFF', 'text' : 'Yone'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Zed'},
+                   {'fillStyle' : '#FF6600', 'text' : 'Ziggs'},
+                   {'fillStyle' : '#FCF340', 'text' : 'Zilean'},
+				   {'fillStyle' : '#FB33D8', 'text' : 'Zoe'}
+				   
+				   
+				   
+                ],
+                'animation' :           // Specify the animation to use.
+                {
+                    'type'     : 'spinToStop',
+                    'duration' : 2+((Math.random() * 5)+1),    // Duration in seconds. 6+((Math.random() * 7)+1)
+                    'spins'    : 2,     // Default number of complete spins.
+                    'callbackFinished' : alertPrize,   // champ of your choice
+                    'callbackSound'    : playSound,   // Function to call when the tick sound is to be triggered.
+                    'soundTrigger'     : 'pin'        // Specify pins are to trigger the sound, the other option is 'segment'.
+                },
+                'pins' :				// Turn pins on.
+                {
+                    'number'     : 54,
+                    'fillStyle'  : 'silver',
+                    'outerRadius': 4,
+                }
+            });
+
+
+
+            // Loads the tick audio sound in to an audio object.
+            let audio = new Audio('dzwieki/tick.mp3');
+			
+
+            // This function is called when the sound is to be played.
+            function playSound()
+            {
+                // Stop and rewind the sound if it already happens to be playing.
+                audio.pause();
+                audio.currentTime = 0;
+
+                // Play the sound.
+                audio.play();
+            }
+			
+				
+            // Vars used by the code in this page to do power controls.
+            let wheelPower    = 3;
+            let wheelSpinning = false;
+
+            // -------------------------------------------------------
+            // Function to handle the onClick on the power buttons.
+            // -------------------------------------------------------
+            
+
+            // -------------------------------------------------------
+            // Click handler for spin button.
+            // -------------------------------------------------------
+            function startSpin()
+            {
+			resetWheel();
+			
+                // Ensure that spinning can't be clicked again while already running.
+                if (wheelSpinning == false) {
+                    // Based on the power level selected adjust the number of spins for the wheel, the more times is has
+                    // to rotate with the duration of the animation the quicker the wheel spins.
+                    if (wheelPower == 1) {
+                        theWheel.animation.spins = ((Math.random() * 1)+15);
+                    } else if (wheelPower == 2) {
+                        theWheel.animation.spins = ((Math.random() * 1)+15);
+                    } else if (wheelPower == 3) {
+                        theWheel.animation.spins = ((Math.random() * 1)+15);
+                    }
+					else{
+					theWheel.animation.spins = ((Math.random() * 1)+10)+((Math.random() * 1)+2)+(Math.random() * 4);
+					}
+
+                    // Disable the spin button so can't click again while wheel is spinning.
+                    document.getElementById('spin_button').src       = "spin_offAlt.png";
+                    document.getElementById('spin_button').className = "";
+
+                    // Begin the spin animation by calling startAnimation on the wheel object.
+                    theWheel.startAnimation();
+
+                    // Set to true so that power can't be changed and spin button re-enabled during
+                    // the current animation. The user will have to reset before spinning again.
+                    wheelSpinning = true;
+                }
+            }
+
+            // -------------------------------------------------------
+            // Function for reset button.
+            // -------------------------------------------------------
+            function resetWheel()
+            {
+                theWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
+                theWheel.rotationAngle = Math.floor(Math.random() * 360);     // Re-set the wheel angle to random degrees.
+                theWheel.draw();                // Call draw to render changes to the wheel.
+
+               
+
+                wheelSpinning = false;          // Reset to false to power buttons and spin can be clicked again.
+            }
+
+            // -------------------------------------------------------
+            // Called when the spin animation has finished by the callback feature of the wheel because I specified callback in the parameters.
+            // -------------------------------------------------------
+         
+		 
+		 
+		 
+		 
+			 $( function() {
+		$( "#dialog" ).dialog({
+		 autoOpen: true,
+        maxWidth:2000,
+        maxHeight: 2000,
+        width: 1000,
+        height: 1000,
+        modal: true});
+		} );
+			function alertPrize(indicatedSegment)
+            {
+			         if (indicatedSegment.text == 'Aatrox'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Aatrox\"> <p><center><img src=\"champs/aatrox.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+				
+					} else if (indicatedSegment.text == 'Ahri'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Ahri\"> <p><center><img src=\"champs/ahri.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Akali'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Akali\"> <p><center><img src=\"champs/akali.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Annie'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Annie\"> <p><center><img src=\"champs/annie.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Aurelion Sol'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Aurelion Sol\"> <p><center><img src=\"champs/aurelion.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Azir'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Azir\"> <p><center><img src=\"champs/azir.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Camille'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Camille\"> <p><center><img src=\"champs/camille.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Cassiopeia'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Cassiopeia\"> <p><center><img src=\"champs/cassio.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Cho Gath'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Cho Gath\"> <p><center><img src=\"champs/cho.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Diana'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Diana\"> <p><center><img src=\"champs/diana.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Ekko'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Ekko\"> <p><center><img src=\"champs/ekko.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Fizz'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Fizz\"> <p><center><img src=\"champs/fizz.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Galio'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Galio\"> <p><center><img src=\"champs/galio.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Garen'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Garen\"> <p><center><img src=\"champs/garen.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Heimerdinger'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Heimerdinger\"> <p><center><img src=\"champs/heim.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Irelia'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Irelia\"> <p><center><img src=\"champs/irelia.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Ivern'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Ivern\"> <p><center><img src=\"champs/ivern.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Jayce'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Jayce\"> <p><center><img src=\"champs/jayce.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Kassadin'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Kassadin\"> <p><center><img src=\"champs/kassa.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Katarina'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Katarina\"> <p><center><img src=\"champs/kata.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'LeBlanc'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to LeBlanc\"> <p><center><img src=\"champs/leblanc.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Lillia'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Lillia\"> <p><center><img src=\"champs/lillia.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Lissandra'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Lissandra\"> <p><center><img src=\"champs/liss.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Lucian'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Lucian\"> <p><center><img src=\"champs/lux.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Lux'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Lux\"> <p><center><img src=\"champs/lux.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Malphite'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Malphite\"> <p><center><img src=\"champs/malph.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} else if (indicatedSegment.text == 'Malzahar'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Malzahar\"> <p><center><img src=\"champs/malza.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Neeko'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Neeko\"> <p><center><img src=\"champs/neeko.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Nocturne'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Nocturne\"> <p><center><img src=\"champs/noc.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Orianna'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Orianna\"> <p><center><img src=\"champs/ori.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Nunu'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Nunu\"> <p><center><img src=\"champs/nunu.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Pantheon'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Pantheon\"> <p><center><img src=\"champs/pantheon.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Pyke'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Pyke\"> <p><center><img src=\"champs/pyke.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Qiyana'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Qiyana\"> <p><center><img src=\"champs/qiyana.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Renekton'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Renekton\"> <p><center><img src=\"champs/rene.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Rumble'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Rumble\"> <p><center><img src=\"champs/rumble.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Ryze'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Ryze\"> <p><center><img src=\"champs/ryze.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Swain'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Swain\"> <p><center><img src=\"champs/swain.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Sylas'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Sylas\"> <p><center><img src=\"champs/sylas.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} else if (indicatedSegment.text == 'Syndra'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Syndra\"> <p><center><img src=\"champs/syndra.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Talon'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Talon\"> <p><center><img src=\"champs/talon.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Twisted Fate'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Twisted Fate\"> <p><center><img src=\"champs/tf.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} else if (indicatedSegment.text == 'Veigar'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Veigar\"> <p><center><img src=\"champs/veigar.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Vel Koz'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Vel Koz\"> <p><center><img src=\"champs/vel.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Viktor'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Viktor\"> <p><center><img src=\"champs/viktor.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Vladimir'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Vladimir\"> <p><center><img src=\"champs/vlad.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Xerath'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Xerath\"> <p><center><img src=\"champs/xerath.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Yasuo'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Yasuo\"> <p><center><img src=\"champs/yasuo.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Zed'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Zed\"> <p><center><img src=\"champs/zed.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Ziggs'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Ziggs\"> <p><center><img src=\"champs/ziggs.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Zilean'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Zilean\"> <p><center><img src=\"champs/zilean.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+						else if (indicatedSegment.text == 'Anivia'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Anivia\"> <p><center><img src=\"champs/anivia.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Yone'){
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Yone\"> <p><center><img src=\"champs/yone.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+				
+					else {
+					$("<div id=\"dialog\" title=\"Twój Midlaner to Zoe\"> <p><center><img src=\"champs/zoe.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					}
+					
+					
+			}	
+		   
+					
+        </script>
+	
+<img src="pointer2.png" alt="Paris" class="center" >
+	
+    </body>
+</html>

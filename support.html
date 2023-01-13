@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+    <head>
+
+	<link rel="icon" href="ikonka.ico">
+	 <meta charset="utf-8">
+        <title>Support</title>
+        <link rel="stylesheet" href="styles6.css" type="text/css" />
+        <script type="text/javascript" src="skrypt.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   
+    </head>
+     <body>
+
+        <div align="center">
+		
+		
+           
+            <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td>
+                    <div class="power_controls">
+                        <br />
+                        <br />
+                        <table class="power" cellpadding="10" cellspacing="0">
+                            <tr>
+                                <th align="center">Losowanie</th>
+                            </tr>
+                            <tr>
+                                <td width="78" align="center"><a href="index.html">Junglera</a></td>
+                            </tr>
+                            <tr>
+                                <td width="78" align="center"><a href="mid.html">Mida</a></td>
+                            </tr>
+							<tr>
+                                <td width="78" align="center"><a href="top.html">Topa</a></td>
+                            </tr>
+							<tr>
+                                <td width="78" align="center"><a href="adc.html">Adc</a></td>
+                            </tr>
+							<tr>
+                                <td width="78" align="center"><a href="support.html">Supporta</a></td>
+                            </tr>
+							<tr>
+                                <td width="78" align="center"><a href="rola.html">roli</a></td>
+                            </tr>
+							<tr>
+                                <td width="78" align="center"><a href="gra.html">gry</a></td>
+                            </tr>
+                        </table>
+                        <br />
+                        <img id="spin_button" src="spin_offAlt.png" alt="Spin" onClick="startSpin();" />
+                        <br /><br />
+                       
+                    </div>
+                </td>
+                <td class="the_wheel" align="center" valign="center">
+                    <canvas id="canvas" width="875" height="1160" >
+                        <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
+                    </canvas>
+                </td>
+            </tr>
+        </table>
+        <script>
+		
+
+		
+		//declaration of champions sounds thats will be playing after spinning the fortune wheel
+		var alistar = new Audio("dzwieki/alistar.mp3");
+		var bard = new Audio("dzwieki/bard.mp3");
+		var blitzcrank = new Audio("dzwieki/blitzcrank.mp3");
+		var brand = new Audio("dzwieki/brand.mp3");
+		var braum = new Audio("dzwieki/braum.mp3");
+		var galio = new Audio("dzwieki/galio.mp3");
+		var janna = new Audio("dzwieki/janna.mp3");
+		var karma = new Audio("dzwieki/karma.mp3");
+		var leona = new Audio("dzwieki/leona.mp3");
+		var lulu = new Audio("dzwieki/lulu.mp3");
+		var lux = new Audio("dzwieki/lux.mp3");
+		var malphite = new Audio("dzwieki/malph.mp3");
+		var maokai = new Audio("dzwieki/mao.mp3");
+		var morgana = new Audio("dzwieki/morgana.mp3");
+		var nami = new Audio("dzwieki/nami.mp3");
+		var nautilus = new Audio("dzwieki/nautilus.mp3");
+		var pantheon = new Audio("dzwieki/pantheon.mp3");
+		var poppy = new Audio("dzwieki/poppy.mp3");
+		var pyke = new Audio("dzwieki/pyke.mp3");
+		var rakan = new Audio("dzwieki/rakan.mp3");
+		var senna = new Audio("dzwieki/senna.mp3");
+		var sett = new Audio("dzwieki/sett.mp3");
+		var shaco = new Audio("dzwieki/shaco.mp3");
+		var shen = new Audio("dzwieki/shen.mp3");
+		var sona = new Audio("dzwieki/sona.mp3");
+		var soraka = new Audio("dzwieki/ivern.mp3");
+		var swain = new Audio("dzwieki/swain.mp3");
+		var tham = new Audio("dzwieki/tahm.mp3");
+		var taric = new Audio("dzwieki/taric.mp3");
+		var thresh = new Audio("dzwieki/thresh.mp3");
+		var vel = new Audio("dzwieki/vel.mp3");
+		var xerath = new Audio("dzwieki/xerath.mp3");
+		var yuumi = new Audio("dzwieki/yuumi.mp3");
+		var zac = new Audio("dzwieki/zac.mp3");
+		var zilean = new Audio("dzwieki/zilean.mp3");
+		var zyra = new Audio("dzwieki/zyra.mp3");
+	
+		
+            // Create new wheel object specifying the parameters at creation time.
+            let theWheel = new Winwheel({
+                'outerRadius'     : 400,        // Set outer radius so wheel fits inside the background.
+                'innerRadius'     : 160,         // Make wheel hollow so segments don't go all way to center. 160, the old one
+                'textFontSize'    : 22,         // Set default font size for the segments.
+                'textOrientation' : 'horizontal', // Make text vertial so goes down from the outside of wheel.
+                'textAlignment'   : 'center',    // Align text to outside of wheel.
+                'numSegments'     : 36,         // Specify number of segments.
+				
+                'segments'        :             // Define segments including colour and text.
+                [                               // font size and test colour overridden on backrupt segments.
+                   
+				   {'fillStyle' : '#0310EA', 'text' : 'Alistar', 'textFillStyle' : '#ffffff'},
+   				   {'fillStyle' : '#00FFFF', 'text' : 'Bard'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Blitzcrank'},
+				   
+				   {'fillStyle' : '#FB33D8', 'text' : 'Brand'},
+				   
+				   {'fillStyle' : '#00FFFF', 'text' : 'Braum'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Galio'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Janna'},
+				   {'fillStyle' : '#FF3300', 'text' : 'Karma'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Leona'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Lulu'},
+				   {'fillStyle' : '#FB33D8', 'text' : 'Lux'},
+				   
+				   {'fillStyle' : '#FF6600', 'text' : 'Malphite'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Maokai'},
+				   
+				   {'fillStyle' : '#FCF340', 'text' : 'Morgana'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Nami'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Nautilus'},
+				   {'fillStyle' : '#FB33D8', 'text' : 'Pantheon'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Poppy'},
+				   {'fillStyle' : '#0310EA', 'text' : 'Pyke', 'textFillStyle' : '#ffffff'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Rakan'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Senna'},
+                   {'fillStyle' : '#00FFFF', 'text' : 'Sett'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Shaco'},
+                   {'fillStyle' : '#FF6600', 'text' : 'Shen'},
+                   {'fillStyle' : '#FCF340', 'text' : 'Sona'},
+				   {'fillStyle' : '#FB33D8', 'text' : 'Soraka'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Swain'},
+                   
+				   {'fillStyle' : '#FCF340', 'text' : 'Tahm Kench'},
+				   
+				   {'fillStyle' : '#00FFFF', 'text' : 'Taric'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Thresh'},
+				   
+				   {'fillStyle' : '#FB33D8', 'text' : 'Vel Koz'},
+				   {'fillStyle' : '#FCF340', 'text' : 'Xerath'},
+				   {'fillStyle' : '#00FFFF', 'text' : 'Yuumi'},
+				   {'fillStyle' : '#FF6600', 'text' : 'Zac'},
+		  		   {'fillStyle' : '#00FFFF', 'text' : 'Zilean'},
+				   {'fillStyle' : '#0310EA', 'text' : 'Zyra', 'textFillStyle' : '#ffffff'}
+				   
+				   
+                ],
+                'animation' :           // Specify the animation to use.
+                {
+                    'type'     : 'spinToStop',
+                    'duration' : 2+((Math.random() * 5)+1),    // Duration in seconds. 6+((Math.random() * 7)+1)
+                    'spins'    : 2,     // Default number of complete spins.
+                    'callbackFinished' : alertPrize,   // champ of your choice
+                    'callbackSound'    : playSound,   // Function to call when the tick sound is to be triggered.
+                    'soundTrigger'     : 'pin'        // Specify pins are to trigger the sound, the other option is 'segment'.
+                },
+                'pins' :				// Turn pins on.
+                {
+                    'number'     : 36,
+                    'fillStyle'  : 'silver',
+                    'outerRadius': 4,
+                }
+            });
+
+
+
+            // Loads the tick audio sound in to an audio object.
+            let audio = new Audio('dzwieki/tick.mp3');
+			
+
+            // This function is called when the sound is to be played.
+            function playSound()
+            {
+                // Stop and rewind the sound if it already happens to be playing.
+                audio.pause();
+                audio.currentTime = 0;
+
+                // Play the sound.
+                audio.play();
+            }
+			
+				
+            // Vars used by the code in this page to do power controls.
+            let wheelPower    = 3;
+            let wheelSpinning = false;
+
+            // -------------------------------------------------------
+            // Function to handle the onClick on the power buttons.
+            // -------------------------------------------------------
+            
+
+            // -------------------------------------------------------
+            // Click handler for spin button.
+            // -------------------------------------------------------
+            function startSpin()
+            {
+			resetWheel();
+			
+                // Ensure that spinning can't be clicked again while already running.
+                if (wheelSpinning == false) {
+                    // Based on the power level selected adjust the number of spins for the wheel, the more times is has
+                    // to rotate with the duration of the animation the quicker the wheel spins.
+                    if (wheelPower == 1) {
+                        theWheel.animation.spins = ((Math.random() * 1)+15);
+                    } else if (wheelPower == 2) {
+                        theWheel.animation.spins = ((Math.random() * 1)+15);
+                    } else if (wheelPower == 3) {
+                        theWheel.animation.spins = ((Math.random() * 1)+15);
+                    }
+					else{
+					theWheel.animation.spins = ((Math.random() * 1)+10)+((Math.random() * 1)+2)+(Math.random() * 4);
+					}
+
+                    // Disable the spin button so can't click again while wheel is spinning.
+                    document.getElementById('spin_button').src       = "spin_offAlt.png";
+                    document.getElementById('spin_button').className = "";
+
+                    // Begin the spin animation by calling startAnimation on the wheel object.
+                    theWheel.startAnimation();
+
+                    // Set to true so that power can't be changed and spin button re-enabled during
+                    // the current animation. The user will have to reset before spinning again.
+                    wheelSpinning = true;
+                }
+            }
+
+            // -------------------------------------------------------
+            // Function for reset button.
+            // -------------------------------------------------------
+            function resetWheel()
+            {
+                theWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
+                theWheel.rotationAngle = Math.floor(Math.random() * 360);     // Re-set the wheel angle to random degrees.
+                theWheel.draw();                // Call draw to render changes to the wheel.
+
+               
+
+                wheelSpinning = false;          // Reset to false to power buttons and spin can be clicked again.
+            }
+
+            // -------------------------------------------------------
+            // Called when the spin animation has finished by the callback feature of the wheel because I specified callback in the parameters.
+            // -------------------------------------------------------
+         
+		 
+		 
+		 
+		 
+			 $( function() {
+		$( "#dialog" ).dialog({
+		 autoOpen: true,
+        maxWidth:2000,
+        maxHeight: 2000,
+        width: 1000,
+        height: 1000,
+        modal: true});
+		} );
+			function alertPrize(indicatedSegment)
+            {
+			         if (indicatedSegment.text == 'Zyra'){
+					$("<div id=\"dialog\" title=\"Twój support to Zyra\"> <p><center><img src=\"champs/zyra.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+				
+					} else if (indicatedSegment.text == 'Alistar'){
+					$("<div id=\"dialog\" title=\"Twój support to Alistar\"> <p><center><img src=\"champs/alistar.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Blitzcrank'){
+					$("<div id=\"dialog\" title=\"Twój support to Blitzcrank\"> <p><center><img src=\"champs/blitzcrank.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+				
+					} 
+					else if (indicatedSegment.text == 'Brand'){
+					$("<div id=\"dialog\" title=\"Twój support to Brand\"> <p><center><img src=\"champs/brand.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+				
+					} 
+					else if (indicatedSegment.text == 'Braum'){
+					$("<div id=\"dialog\" title=\"Twój support to Braum\"> <p><center><img src=\"champs/braum.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+			
+					} 
+					else if (indicatedSegment.text == 'Galio'){
+					$("<div id=\"dialog\" title=\"Twój support to Galio\"> <p><center><img src=\"champs/galio.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+				
+					} 
+					else if (indicatedSegment.text == 'Janna'){
+					$("<div id=\"dialog\" title=\"Twój support to Janna\"> <p><center><img src=\"champs/janna.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+				
+					} 
+					else if (indicatedSegment.text == 'Karma'){
+					$("<div id=\"dialog\" title=\"Twój support to Alistar\"> <p><center><img src=\"champs/karma.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Leona'){
+					$("<div id=\"dialog\" title=\"Twój support to Leona\"> <p><center><img src=\"champs/leona.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+				
+					} 
+					else if (indicatedSegment.text == 'Lulu'){
+					$("<div id=\"dialog\" title=\"Twój support to Lulu\"> <p><center><img src=\"champs/lulu.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+				
+					} 
+					else if (indicatedSegment.text == 'Lux'){
+					$("<div id=\"dialog\" title=\"Twój support to Lux\"> <p><center><img src=\"champs/lux.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Malphite'){
+					$("<div id=\"dialog\" title=\"Twój support to Malphite\"> <p><center><img src=\"champs/malph.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+				
+					} 
+					else if (indicatedSegment.text == 'Maokai'){
+					$("<div id=\"dialog\" title=\"Twój support to Maokai\"> <p><center><img src=\"champs/mao.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Morgana'){
+					$("<div id=\"dialog\" title=\"Twój support to Morgana\"> <p><center><img src=\"champs/morgana.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Nami'){
+					$("<div id=\"dialog\" title=\"Twój support to Nami\"> <p><center><img src=\"champs/nami.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Naulilus'){
+					$("<div id=\"dialog\" title=\"Twój support to Nautilus\"> <p><center><img src=\"champs/naut.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Pantheon'){
+					$("<div id=\"dialog\" title=\"Twój support to Pantheon\"> <p><center><img src=\"champs/pantheon.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Poppy'){
+					$("<div id=\"dialog\" title=\"Twój support to Poppy\"> <p><center><img src=\"champs/poppy.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Pyke'){
+					$("<div id=\"dialog\" title=\"Twój support to Pyke\"> <p><center><img src=\"champs/pyke.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Rakan'){
+					$("<div id=\"dialog\" title=\"Twój support to Rakan\"> <p><center><img src=\"champs/rakan.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Senna'){
+					$("<div id=\"dialog\" title=\"Twój support to Senna\"> <p><center><img src=\"champs/senna.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Sett'){
+					$("<div id=\"dialog\" title=\"Twój support to Sett\"> <p><center><img src=\"champs/sett.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Shaco'){
+					$("<div id=\"dialog\" title=\"Twój support to Shaco\"> <p><center><img src=\"champs/shaco.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Shen'){
+					$("<div id=\"dialog\" title=\"Twój support to Shen\"> <p><center><img src=\"champs/shen.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Sona'){
+					$("<div id=\"dialog\" title=\"Twój support to Sona\"> <p><center><img src=\"champs/sona.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Soraka'){
+					$("<div id=\"dialog\" title=\"Twój support to Soraka\"> <p><center><img src=\"champs/soraka.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Swain'){
+					$("<div id=\"dialog\" title=\"Twój support to Swain\"> <p><center><img src=\"champs/swain.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Tahm Kench'){
+					$("<div id=\"dialog\" title=\"Twój support to Tahm Kench\"> <p><center><img src=\"champs/tahm.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Taric'){
+					$("<div id=\"dialog\" title=\"Twój support to Taric\"> <p><center><img src=\"champs/taric.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Thresh'){
+					$("<div id=\"dialog\" title=\"Twój support to Thresh\"> <p><center><img src=\"champs/thresh.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Vel Koz'){
+					$("<div id=\"dialog\" title=\"Twój support to Vel-Koz\"> <p><center><img src=\"champs/vel.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Xerath'){
+					$("<div id=\"dialog\" title=\"Twój support to Xerath\"> <p><center><img src=\"champs/xerath.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Yuumi'){
+					$("<div id=\"dialog\" title=\"Twój support to Yuumi\"> <p><center><img src=\"champs/yuumi.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Zac'){
+					$("<div id=\"dialog\" title=\"Twój support to Zac\"> <p><center><img src=\"champs/zac.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else if (indicatedSegment.text == 'Zilean'){
+					$("<div id=\"dialog\" title=\"Twój support to Zilean\"> <p><center><img src=\"champs/zilean.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					} 
+					else {
+					$("<div id=\"dialog\" title=\"Twój support to Bard\"> <p><center><img src=\"champs/bard.jpg\" width=\"185\" height=\"336\"></center></p><meta http-equiv=\"refresh\" content=\"600\" > </div>").dialog({
+					width: 300,
+					height: 405
+					});
+					
+					}
+					
+					
+			}	
+		   
+					
+        </script>
+	
+<img src="pointer2.png" alt="Paris" class="center" >
+	
+    </body>
+</html>
